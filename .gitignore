@@ -3,4 +3,5 @@ node_modules
 package-lock.json
 /.env
 /.rpcrelay.env
-/logger.json
+/logs
+/hedera-app-notes.docx

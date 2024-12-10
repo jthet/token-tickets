@@ -1,6 +1,7 @@
 {
   "name": "my-hedera-app",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +12,7 @@
   "dependencies": {
     "@hashgraph/sdk": "^2.54.2",
     "axios": "^1.7.9",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "winston": "^3.17.0"
   }
 }
