@@ -4,51 +4,51 @@ import { logTransaction } from '../../utils/transactions/logger.js'
 // Function to fetch transactions from the Hedera mirror node
 async function getTransactions({
   lastTimestamp = null,
-  processedTransactionIds = new Set(),
   testNet = true,
   transactionType = 'cryptoTransfer',
   result = 'success',
   verbose_level = null, // default, returns all json data
 } = {}) {
+  // if lastTimestamp is not given, set it to 10 seconds before the current time
+  if (!lastTimestamp) {
+    const now = Date.now()
+    const seconds = Math.floor(now / 1000)
+    const nanoseconds = (now % 1000) * 1e6
+    const lag = 10 // 10 seconds lag
+    lastTimestamp = `${seconds - lag}.${nanoseconds.toString().padStart(9, '0')}`
+  }
+
   const nodeUrl = testNet
     ? 'https://testnet.mirrornode.hedera.com/api/v1/transactions'
     : 'https://mainnet.mirrornode.hedera.com/api/v1/transactions'
 
-  const queryParams = {
-    result: result,
+  const queryParams = new URLSearchParams({
+    result,
     transactiontype: transactionType,
-    // limit: 2,
-    // "account.id": "0.0.3",
-  }
+    order: 'asc', // keep this constant.
+  })
 
   if (lastTimestamp) {
-    queryParams.timestamp = `gt:${lastTimestamp}`
+    queryParams.append('timestamp', `gt:${lastTimestamp}`)
   }
-
-  const newTransactions = []
 
   try {
     const response = await axios.get(nodeUrl, { params: queryParams })
-    const transactions = response.data.transactions
+    // console.log('Response data:', response.data) // Log the response data
 
-    if (transactions.length > 0) {
-      transactions.forEach((transaction) => {
-        if (!processedTransactionIds.has(transaction.transaction_id)) {
-          logTransaction(transaction, verbose_level)
-          // Add the transaction ID to the set of processed IDs
-          // processedTransactionIds.add(transaction.transaction_id);
-          newTransactions.push(transaction)
-        }
+    if (response.data.transactions) {
+      response.data.transactions.forEach((transaction) => {
+        logTransaction(transaction, verbose_level)
       })
-
-      // Update the lastTimestamp to the timestamp of the last transaction
-      lastTimestamp = transactions[transactions.length - 1].consensus_timestamp
+      return response.data.transactions
+    } else {
+      console.error('No transactions found in response:', response.data)
+      return []
     }
   } catch (error) {
     console.error('Error fetching transactions:', error)
+    return []
   }
-
-  return { lastTimestamp, newTransactions }
 }
 
 export default getTransactions

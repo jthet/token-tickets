@@ -1,6 +1,5 @@
 import { createLogger, format, transports } from 'winston'
 import path from 'path'
-import { error } from 'console'
 
 const logger = createLogger({
   level: 'info',
@@ -20,6 +19,11 @@ const logger = createLogger({
 })
 
 function logTransaction(transaction, verbose) {
+  if (verbose === null) {
+    // Verbose is null, returning without logging
+    return
+  }
+
   let logMessage = ''
 
   if (verbose === 0) {
@@ -46,8 +50,11 @@ function logTransaction(transaction, verbose) {
       'Staking Reward Transfers': transaction.staking_reward_transfers,
     }
     logMessage = JSON.stringify(logObject, null, 2)
-  } else {
+  } else if (verbose === 3) {
     logMessage = JSON.stringify(transaction, null, 2) + '\n\n'
+  } else {
+    console.log('Invalid verbose level')
+    return
   }
   logger.info(logMessage)
 }
