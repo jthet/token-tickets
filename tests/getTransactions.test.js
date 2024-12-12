@@ -1,14 +1,14 @@
-import axios from 'axios'
-import getTransactions from '../src/services/transactions/getTransactions'
-import { logTransaction } from '../utils/transactions/logger'
+import axios from 'axios';
+import getTransactions from '../src/services/transactions/getTransactions';
+import { logTransaction } from '../utils/transactions/logger';
 
-jest.mock('axios')
-jest.mock('../utils/transactions/logger')
+jest.mock('axios');
+jest.mock('../utils/transactions/logger');
 
 describe('getTransactions', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
-  })
+    jest.clearAllMocks();
+  });
 
   it('should return the expected transaction when called with limit: 1', async () => {
     const expectedTransaction = {
@@ -37,29 +37,29 @@ describe('getTransactions', () => {
       ],
       valid_duration_seconds: '120',
       valid_start_timestamp: '1733978925.467000000',
-    }
+    };
 
     const mockResponse = {
       data: {
         transactions: [expectedTransaction],
       },
-    }
+    };
 
-    axios.get.mockResolvedValue(mockResponse)
+    axios.get.mockResolvedValue(mockResponse);
 
-    const transactions = await getTransactions({ limit: 2 })
+    const transactions = await getTransactions({ limit: 2 });
 
     expect(axios.get).toHaveBeenCalledWith(
       'https://testnet.mirrornode.hedera.com/api/v1/transactions',
       {
         params: expect.any(URLSearchParams),
       }
-    )
+    );
 
-    expect(transactions).toEqual([expectedTransaction])
-    expect(logTransaction).toHaveBeenCalledTimes(1)
-    expect(logTransaction).toHaveBeenCalledWith(expectedTransaction, null)
-  })
+    expect(transactions).toEqual([expectedTransaction]);
+    expect(logTransaction).toHaveBeenCalledTimes(1);
+    expect(logTransaction).toHaveBeenCalledWith(expectedTransaction, null);
+  });
 
   // Checks the response returns all the correct fields with verbosity = null
   it('should return a transaction with the same fields as expectedTransaction', async () => {
@@ -89,25 +89,25 @@ describe('getTransactions', () => {
       ],
       valid_duration_seconds: '120',
       valid_start_timestamp: '1733978925.467000000',
-    }
+    };
 
     const mockResponse = {
       data: {
         transactions: [expectedTransaction],
       },
-    }
-    axios.get.mockResolvedValue(mockResponse)
+    };
+    axios.get.mockResolvedValue(mockResponse);
 
-    const transactions = await getTransactions({ limit: 1 })
+    const transactions = await getTransactions({ limit: 1 });
 
     expect(axios.get).toHaveBeenCalledWith(
       'https://testnet.mirrornode.hedera.com/api/v1/transactions',
       {
         params: expect.any(URLSearchParams),
       }
-    )
+    );
 
-    expect(transactions).toHaveLength(1)
+    expect(transactions).toHaveLength(1);
     expect(transactions[0]).toMatchObject({
       bytes: null,
       charged_tx_fee: expect.any(Number),
@@ -129,6 +129,6 @@ describe('getTransactions', () => {
       transfers: expect.any(Array),
       valid_duration_seconds: expect.any(String),
       valid_start_timestamp: expect.any(String),
-    })
-  })
-})
+    });
+  });
+});

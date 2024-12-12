@@ -1,5 +1,6 @@
-import globals from 'globals'
-import eslintPluginPrettier from 'eslint-plugin-prettier'
+import globals from 'globals';
+import eslintPluginPrettier from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   {
@@ -17,6 +18,9 @@ export default [
     },
     rules: {
       'prettier/prettier': 'error',
+      // Add other ESLint rules here
+      semi: ['error', 'always'],
+      quotes: ['error', 'single'],
     },
     ignores: [
       'node_modules',
@@ -28,4 +32,5 @@ export default [
       '~$dera-app-notes.docx',
     ],
   },
-]
+  eslintConfigPrettier,
+];
