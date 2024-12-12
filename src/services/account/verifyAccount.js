@@ -11,11 +11,12 @@ import getClient from './getClient.js';
  * @returns {Promise<boolean>} - Returns true if the private key matches the account ID, false otherwise.
  * @throws {Error} - Throws an error if the account ID or private key is invalid.
  */
-async function verifyAccountIdAndPrivateKey({
-  client = getClient(),
-  accountId = null,
-  privateKeyString = null,
-} = {}) {
+async function verifyAccountIdAndPrivateKey(
+  client,
+  accountId,
+  privateKeyString
+) {
+  // client here is only used to submit api requests.
   try {
     if (!accountId || !privateKeyString) {
       throw new Error('Both accountId and privateKeyString are required');
@@ -37,8 +38,6 @@ async function verifyAccountIdAndPrivateKey({
     // public key associated with the accountID
     const accountPublicKey = accountInfo.key;
 
-    client.close();
-
     // comparing public key from private key to public key from accountID
     if (publicKey.toString() === accountPublicKey.toString()) {
       return true; // The private key matches the AccountID
@@ -51,4 +50,19 @@ async function verifyAccountIdAndPrivateKey({
   }
 }
 
-export { verifyAccountIdAndPrivateKey };
+async function verifyAccount(client, accountId, privateKeyString) {
+  const isVerified = await verifyAccountIdAndPrivateKey(
+    client,
+    accountId,
+    privateKeyString
+  );
+
+  if (!isVerified) {
+    throw new Error(
+      "Invalid treasury account ID or private key. Keys don't match"
+    );
+  }
+  // console.log('Treasury Account ID and Private Key verified');
+}
+
+export default verifyAccount;

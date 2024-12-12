@@ -1,5 +1,6 @@
 import getClient from '../account/getClient.js';
 import { defaultAccountId, defaultPrivateKey } from '../../config/dotenv.js';
+import verifyAccount from '../account/verifyAccount.js';
 
 import {
   Client,
@@ -27,12 +28,13 @@ async function createNFT({
     throw new Error('Both tokenName and tokenSymbol are required');
   }
 
-  // verify accounts
+  // will throw error if account not verifies
+  await verifyAccount(client, treasuryAccountId, treasurePrivateKey);
 
   // Create a new supply key
   const supplyKey = PrivateKey.generateED25519();
 
-  const nftCreate = await new TokenCreateTransaction()
+  const nftCreate = new TokenCreateTransaction()
     .setTokenName(tokenName)
     .setTokenSymbol(tokenSymbol)
     .setTokenType(TokenType.NonFungibleUnique)
@@ -54,8 +56,8 @@ async function createNFT({
   const nftCreateRx = await nftCreateSubmit.getReceipt(client);
   const tokenId = nftCreateRx.tokenId;
 
-  console.log('Real Supply Key: ' + supplyKey);
-  console.log('Real Created NFT with Token ID: ' + tokenId);
+  // console.log('Real Supply Key: ' + supplyKey);
+  // console.log('Real Created NFT with Token ID: ' + tokenId);
 
   client.close();
 

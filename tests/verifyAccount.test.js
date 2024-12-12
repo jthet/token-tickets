@@ -1,76 +1,27 @@
-import { verifyAccountIdAndPrivateKey } from '../src/services/account/verifyAccount.js';
-import { PrivateKey, AccountInfoQuery } from '@hashgraph/sdk';
+import verifyAccount from '../src/services/account/verifyAccount.js';
+import { defaultAccountId, defaultPrivateKey } from '../src/config/dotenv.js';
 import getClient from '../src/services/account/getClient.js';
 
-jest.mock('@hashgraph/sdk');
-jest.mock('../src/services/account/getClient.js');
-
-describe('verifyAccountIdAndPrivateKey', () => {
-  let mockClient;
-  const accountId = '0.0.1234567';
-  const privateKeyString =
+describe('verifyAccount', () => {
+  // const realAccountId = defaultAccountId;
+  // const realPrivateKey = defaultPrivateKey;
+  const fakeAccountId = '0.0.1234567';
+  const fakePrivateKeyString =
     '302e020100300506032b657004220420ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
-  const mockPublicKey = {
-    toString: jest.fn().mockReturnValue('mockPublicKey'),
-  };
 
-  beforeEach(() => {
-    mockClient = {
-      close: jest.fn(),
-    };
-    getClient.mockReturnValue(mockClient);
-
-    AccountInfoQuery.mockImplementation(() => {
-      return {
-        setAccountId: jest.fn().mockReturnThis(),
-        execute: jest.fn().mockResolvedValue({
-          key: mockPublicKey,
-        }),
-      };
-    });
-
-    PrivateKey.fromStringDer.mockImplementation(() => ({
-      publicKey: {
-        toString: jest.fn().mockReturnValue('mockPublicKey'),
-      },
-    }));
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  test('returns true for matching accountId and privateKey', async () => {
+  test('do nothing if account is valid', async () => {
     const client = getClient();
-    const valid = await verifyAccountIdAndPrivateKey({
-      client: client,
-      accountId: accountId,
-      privateKeyString: privateKeyString,
-    });
-    expect(valid).toBe(true);
-    expect(mockClient.close).toHaveBeenCalled();
+    await expect(
+      verifyAccount(client, defaultAccountId, defaultPrivateKey)
+    ).resolves.not.toThrow();
+    client.close();
   });
 
-  test('returns false for non-matching privateKey or accountId', async () => {
-    const randomPrivateKey =
-      '302e020100300506032b657004220420ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
-    const randomAccountId = '0.0.99999';
-
-    PrivateKey.fromStringDer.mockReturnValue({
-      publicKey: { toString: jest.fn().mockReturnValue('randomPublicKey') },
-    });
-    AccountInfoQuery.prototype.execute.mockResolvedValue({
-      key: { toString: jest.fn().mockReturnValue('mockPublicKey') },
-    });
-
+  test('throw error if account is invalid', async () => {
     const client = getClient();
-    const valid = await verifyAccountIdAndPrivateKey({
-      client: client,
-      accountId: randomAccountId,
-      privateKeyString: randomPrivateKey,
-    });
-
-    expect(valid).toBe(false);
-    expect(mockClient.close).toHaveBeenCalled();
+    await expect(
+      verifyAccount(client, fakeAccountId, fakePrivateKeyString)
+    ).rejects.toThrow();
+    client.close();
   });
 });
