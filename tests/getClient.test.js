@@ -37,12 +37,14 @@ describe('getClient', () => {
     }
   });
 
-  test('should return a client for mainnet when network is mainnet', () => {
+  test('should return a client for testnet when network is testnet', () => {
     client = getClient({
       accountId: defaultAccountId,
       privateKey: defaultPrivateKey,
-      network: 'mainnet',
+      network: 'testnet',
     });
-    expect(client.networkName).toBe('mainnet');
+    // ledgerIds: 0 = mainnet, 1 = testnet, 2 = previewnet
+    console.log(client.ledgerId);
+    expect(client.ledgerId._ledgerId.toString()).toBe('1');
   });
 });
