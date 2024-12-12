@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { logTransaction } from '../../utils/transactions/logger.js'
+import { logTransaction } from '../../../utils/transactions/logger.js'
 
 // Function to fetch transactions from the Hedera mirror node
 async function getTransactions({
@@ -8,6 +8,7 @@ async function getTransactions({
   transactionType = 'cryptoTransfer',
   result = 'success',
   verbose_level = null, // default, returns all json data
+  limit = 100, // default, returns up to 100 transactions
 } = {}) {
   // if lastTimestamp is not given, set it to 10 seconds before the current time
   if (!lastTimestamp) {
@@ -26,6 +27,7 @@ async function getTransactions({
     result,
     transactiontype: transactionType,
     order: 'asc', // keep this constant.
+    limit
   })
 
   if (lastTimestamp) {

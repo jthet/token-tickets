@@ -10,6 +10,11 @@
     "test": "jest --passWithNoTests",
     "prepare": "husky install"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
   "author": "Jackson Thetford <j.thetford@utexas.edu>",
   "license": "ISC",
   "description": "",
@@ -20,7 +25,10 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
     "@eslint/js": "^9.16.0",
+    "babel-jest": "^29.7.0",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",

@@ -1,5 +1,5 @@
 import { getBalance } from './src/services/account/getBalance.js'
-import { transactionStream } from './src/services/transactions/getTransactionStream.js'
+import transactionStream from './src/services/transactions/getTransactionStream.js'
 
 /**
  * Main function to start the application.

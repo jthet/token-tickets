@@ -19,23 +19,7 @@ async function getTransactionStream(interval, verbose_level) {
       lastTimestamp = transactions[transactions.length - 1].consensus_timestamp
     }
 
-    console.log('\nLast Timestamp ' + lastTimestamp + '\n')
-    // Add the new transaction IDs to the processedTransactionIds set
-    // const newTransactions = transactions.filter((transaction) => {
-    //   if (!processedTransactionIds.has(transaction.transaction_id)) {
-    //     processedTransactionIds.add(transaction.transaction_id)
-    //     return true
-    //   }
-    //   return false
-    // })
-
-    // // Ensure the processedTransactionIds set does not grow indefinitely
-    // if (processedTransactionIds.size > MAX_PROCESSED_IDS) {
-    //   const idsArray = Array.from(processedTransactionIds)
-    //   processedTransactionIds = new Set(
-    //     idsArray.slice(idsArray.length - MAX_PROCESSED_IDS)
-    //   )
-    // }
+    // console.log('\nLast Timestamp ' + lastTimestamp + '\n')
   }
 
   poll() // Initial call to fetch transactions immediately
@@ -50,4 +34,4 @@ async function transactionStream(interval, verbose_level) {
   getTransactionStream(interval * 1000, verbose_level) // Poll every interval seconds
 }
 
-export { transactionStream }
+export default transactionStream
