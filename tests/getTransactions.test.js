@@ -59,7 +59,7 @@ describe('getTransactions', () => {
     expect(transactions).toEqual([expectedTransaction])
     expect(logTransaction).toHaveBeenCalledTimes(1)
     expect(logTransaction).toHaveBeenCalledWith(expectedTransaction, null)
-  });
+  })
 
   // Checks the response returns all the correct fields with verbosity = null
   it('should return a transaction with the same fields as expectedTransaction', async () => {
@@ -130,5 +130,5 @@ describe('getTransactions', () => {
       valid_duration_seconds: expect.any(String),
       valid_start_timestamp: expect.any(String),
     })
-  });
+  })
 })

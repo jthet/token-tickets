@@ -27,7 +27,7 @@ async function getTransactions({
     result,
     transactiontype: transactionType,
     order: 'asc', // keep this constant.
-    limit
+    limit,
   })
 
   if (lastTimestamp) {
