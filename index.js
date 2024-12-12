@@ -5,7 +5,6 @@ import getTransactions from './src/services/transactions/getTransactions.js';
 // const interval = 1 // Poll every 1 seconds
 // transactionStream(interval)
 
-
 //////////////////////////////////////////////////////////////////////
 
 // testing transactions
@@ -18,9 +17,11 @@ import getTransactions from './src/services/transactions/getTransactions.js';
 //////////////////////////////////////////////////////////////////////
 // testing createNFT
 // import createNFT from './src/services/tokens/createNFT.js';
+// import getClient from './src/services/account/getClient.js';
 
 // async function main() {
 //   const { tokenId, supplyKey } = await createNFT({
+//     client: getClient(),
 //     tokenName: 'My NFT',
 //     tokenSymbol: 'MNFT',
 //   });
@@ -33,12 +34,33 @@ import getTransactions from './src/services/transactions/getTransactions.js';
 
 //////////////////////////////////////////////////////////////////////
 
+// // testing getBalance
+// import getBalance from './src/services/account/getBalance.js';
+// import getClient from './src/services/account/getClient.js';
 
-// testing getBalance
-import getBalance from './src/services/account/getBalance.js';
+// async function main() {
+//   await getBalance({ client: getClient() });
+// }
+
+// main();
+
+//////////////////////////////////////////////////////////////////////
+
+// testing veryifyAccount
+import { verifyAccountIdAndPrivateKey } from './src/services/account/verifyAccount.js';
+import { defaultAccountId, defaultPrivateKey } from './src/config/dotenv.js';
+import getClient from './src/services/account/getClient.js';
 
 async function main() {
-  await getBalance();
+  const client = getClient();
+  const valid = await verifyAccountIdAndPrivateKey({
+    client: client,
+    accountId: '0.0.5223403',
+    privateKeyString:
+      '302e020100300506032b6570042204208fcb7342c3d965c8d76bab83f27695fb8160ff5176be8bb25221d776df4d46aa',
+  });
+  console.log(valid);
+  client.close();
 }
 
 main();

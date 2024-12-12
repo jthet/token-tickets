@@ -13,16 +13,15 @@ import {
   TokenSupplyType,
 } from '@hashgraph/sdk';
 
-// Note to go back to: right now the treasuryAccount and Client are the same
+// Note to go back to: right now the treasuryAccount and Client are same by default
 async function createNFT({
+  client,
   tokenName, // Required
   tokenSymbol, // Required
   maxSupply = 250,
   supplyType = TokenSupplyType.Finite,
   treasuryAccountId = defaultAccountId, // if not here we will use the getClient operator default
   treasurePrivateKey = defaultPrivateKey, // if not here we will use the getClient operator default
-  clientId = defaultAccountId,
-  clientPrivateKey = defaultPrivateKey,
 } = {}) {
   if (!tokenName || !tokenSymbol) {
     throw new Error('Both tokenName and tokenSymbol are required');
@@ -31,9 +30,8 @@ async function createNFT({
   // verify accounts
 
 
-  // create client. same as treasury account
-  const client = getClient(clientId, clientPrivateKey);
 
+  // Create a new supply key
   const supplyKey = PrivateKey.generateED25519();
 
   const nftCreate = await new TokenCreateTransaction()
@@ -57,7 +55,6 @@ async function createNFT({
   const nftCreateSubmit = await nftCreateTxSign.execute(client);
   const nftCreateRx = await nftCreateSubmit.getReceipt(client);
   const tokenId = nftCreateRx.tokenId;
-
 
   console.log('Real Supply Key: ' + supplyKey);
   console.log('Real Created NFT with Token ID: ' + tokenId);

@@ -3,17 +3,14 @@ import { AccountBalanceQuery } from '@hashgraph/sdk';
 import { defaultAccountId, defaultPrivateKey } from '../../config/dotenv.js';
 
 export async function getBalance({
+  client,
   accountId = defaultAccountId,
-  privateKey = defaultPrivateKey,
 } = {}) {
-  if (!accountId || !privateKey) {
+  if (!accountId || !client) {
     throw new Error(
-      'Environment variables ACCOUNT_ID and PRIVATE_KEY must be present'
+      'Both accountId and client are required to get the account balance'
     );
   }
-
-  const network = 'testnet';
-  const client = getClient(accountId, privateKey, network);
 
   const balance = await new AccountBalanceQuery()
     .setAccountId(accountId) // Use the imported accountId directly
