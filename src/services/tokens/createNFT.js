@@ -29,8 +29,6 @@ async function createNFT({
 
   // verify accounts
 
-
-
   // Create a new supply key
   const supplyKey = PrivateKey.generateED25519();
 
