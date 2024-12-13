@@ -1,4 +1,3 @@
-import getClient from '../account/getClient.js';
 import { defaultAccountId, defaultPrivateKey } from '../../config/dotenv.js';
 import verifyAccount from '../account/verifyAccount.js';
 

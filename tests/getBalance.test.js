@@ -57,3 +57,5 @@ describe('getBalance', () => {
     );
   });
 });
+
+// Add funcionality to query for NFTs and multiple tokens?

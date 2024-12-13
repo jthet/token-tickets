@@ -1,5 +1,3 @@
-import getClient from '../account/getClient.js';
-import createNft from './createNft.js';
 import { TokenMintTransaction, Hbar } from '@hashgraph/sdk';
 
 const CID = [
