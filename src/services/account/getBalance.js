@@ -21,4 +21,11 @@ export async function getBalance({
   return balance;
 }
 
+export async function getBalanceNFT(client, accountId, tokenId) {
+  var balanceCheckTx = await new AccountBalanceQuery()
+    .setAccountId(accountId)
+    .execute(client);
+  return balanceCheckTx.tokens._map.get(tokenId.toString());
+}
+
 export default getBalance;
