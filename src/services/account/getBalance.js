@@ -15,7 +15,7 @@ export async function getBalance({
   const balance = await new AccountBalanceQuery()
     .setAccountId(accountId) // Use the imported accountId directly
     .execute(client);
-  console.log(`Your account balance is: ${balance.hbars.toString()}`);
+  // console.log(`Your account balance is: ${balance.hbars.toString()}`);
 
   client.close();
   return balance;

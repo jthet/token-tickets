@@ -15,7 +15,7 @@ function getClient({
 
     client.setOperator(accountIdObj, privateKeyObj);
   } catch (error) {
-    console.error('Failed to set operator:', error);
+    // console.error('Failed to set operator:', error);
     client.close();
     throw new Error('Failed to set operator');
   }
