@@ -15,12 +15,13 @@
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
     "simple-crypto-js": "^3.0.1",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^4.2.4",
+    "winston": "^3.17.0"
   },
   "scripts": {
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,6 +43,19 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
+    "babel-jest": "^29.7.0",
     "source-map-loader": "^5.0.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!@hashgraph/sdk|axios)"
+    ]
   }
 }
