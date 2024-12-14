@@ -1,5 +1,5 @@
 import axios from 'axios';
-import getTransactions from '../src/services/transactions/getTransactions';
+import getTransactions from '../services/local/transactions/getTransactions';
 import { logTransaction } from '../utils/transactions/logger';
 
 jest.mock('axios');

@@ -1,7 +1,7 @@
-import getTransactionStream from '../src/services/transactions/getTransactionStream.js';
-import getTransactions from '../src/services/transactions/getTransactions.js';
+import getTransactionStream from '../services/local/transactions/getTransactionStream.js';
+import getTransactions from '../services/local/transactions/getTransactions.js';
 
-jest.mock('../src/services/transactions/getTransactions.js');
+jest.mock('../services/local/transactions/getTransactions.js');
 
 describe('getTransactionStream', () => {
   beforeEach(() => {

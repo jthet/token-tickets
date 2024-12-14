@@ -1,4 +1,4 @@
-import { PrivateKey, AccountCreateTransaction, Hbar } from "@hashgraph/sdk";
+const { PrivateKey, AccountCreateTransaction, Hbar } = require("@hashgraph/sdk");
 
 async function createAccount(client) {
   // returns receipt, newAccountPublicKey, newAccountPrivateKey in DER format
@@ -15,4 +15,4 @@ async function createAccount(client) {
   return { receipt, newAccountPublicKey, newAccountPrivateKey };
 }
 
-export default createAccount;
+module.exports = createAccount;

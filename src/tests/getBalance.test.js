@@ -2,7 +2,7 @@ import getBalance from "../services/local/account/getBalance";
 import getClient from "../services/local/account/getClient";
 import { AccountBalanceQuery } from '@hashgraph/sdk';
 
-jest.mock('../src/services/account/getClient');
+jest.mock('../services/local/account/getClient');
 jest.mock('@hashgraph/sdk');
 
 describe('getBalance', () => {
