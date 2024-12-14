@@ -1,4 +1,4 @@
-import { TokenMintTransaction, Hbar } from "@hashgraph/sdk";
+import { TokenMintTransaction, Hbar } from '@hashgraph/sdk';
 
 // const CID = [
 //   Buffer.from(
@@ -27,7 +27,7 @@ async function mintNFT({
 } = {}) {
   // verifying CID structure
   if (!Array.isArray(CID) || !CID.every((item) => Buffer.isBuffer(item))) {
-    throw new Error("CID must be an array of Buffer objects");
+    throw new Error('CID must be an array of Buffer objects');
   }
 
   const mintTx = new TokenMintTransaction()

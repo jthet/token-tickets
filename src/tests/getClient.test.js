@@ -1,7 +1,10 @@
-const { defaultAccountId, defaultPrivateKey } = require("../services/local/config/dotenv.js");
-const getClient = require("../services/local/account/getClient.js");
+const {
+  defaultAccountId,
+  defaultPrivateKey,
+} = require('../services/local/config/dotenv.js');
+const getClient = require('../services/local/account/getClient.js');
 
-describe("getClient", () => {
+describe('getClient', () => {
   let client;
 
   afterEach(() => {
@@ -11,38 +14,38 @@ describe("getClient", () => {
     }
   });
 
-  test("should return a client with default credentials", () => {
+  test('should return a client with default credentials', () => {
     client = getClient();
     expect(client.operatorAccountId.toString()).toBe(defaultAccountId);
   });
 
-  test("should return a client with default operatorId same as given accountID", () => {
+  test('should return a client with default operatorId same as given accountID', () => {
     client = getClient({
       accountId: defaultAccountId,
       privateKey: defaultPrivateKey,
-      network: "testnet",
+      network: 'testnet',
     });
     expect(client.operatorAccountId.toString()).toBe(defaultAccountId);
   });
 
-  test("should throw error with nonDER PrivateKey", () => {
-    const accountId = "0.0.1234567";
-    const privateKey = "abc";
+  test('should throw error with nonDER PrivateKey', () => {
+    const accountId = '0.0.1234567';
+    const privateKey = 'abc';
     try {
       getClient({ accountId, privateKey });
-      throw new Error("Expected getClient to throw an error");
+      throw new Error('Expected getClient to throw an error');
     } catch (e) {
       expect(e).toBeInstanceOf(Error);
     }
   });
 
-  test("should return a client for testnet when network is testnet", () => {
+  test('should return a client for testnet when network is testnet', () => {
     client = getClient({
       accountId: defaultAccountId,
       privateKey: defaultPrivateKey,
-      network: "testnet",
+      network: 'testnet',
     });
     // ledgerIds: 0 = mainnet, 1 = testnet, 2 = previewnet
-    expect(client.ledgerId._ledgerId.toString()).toBe("1");
+    expect(client.ledgerId._ledgerId.toString()).toBe('1');
   });
 });

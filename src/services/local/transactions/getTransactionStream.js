@@ -1,4 +1,4 @@
-import getTransactions from "./getTransactions.js";
+import getTransactions from './getTransactions.js';
 
 async function getTransactionStream(interval, verbose_level) {
   let lastTimestamp = null;
@@ -9,8 +9,8 @@ async function getTransactionStream(interval, verbose_level) {
     const transactions = await getTransactions({
       lastTimestamp: lastTimestamp,
       testNet: true,
-      transactionType: "cryptoTransfer", // default
-      result: "success", // default
+      transactionType: 'cryptoTransfer', // default
+      result: 'success', // default
       verbose_level: verbose_level, // default
     });
 

@@ -1,12 +1,12 @@
-import axios from "axios";
-import { logTransaction } from "../../../utils/transactions/logger.js";
+import axios from 'axios';
+import { logTransaction } from '../../../utils/transactions/logger.js';
 
 // Function to fetch transactions from the Hedera mirror node
 async function getTransactions({
   lastTimestamp = null,
   testNet = true,
-  transactionType = "cryptoTransfer",
-  result = "success",
+  transactionType = 'cryptoTransfer',
+  result = 'success',
   verbose_level = null, // default, returns all json data
   limit = 100, // default, returns up to 100 transactions
 } = {}) {
@@ -18,22 +18,22 @@ async function getTransactions({
     const lag = 10; // 10 seconds lag
     lastTimestamp = `${seconds - lag}.${nanoseconds
       .toString()
-      .padStart(9, "0")}`;
+      .padStart(9, '0')}`;
   }
 
   const nodeUrl = testNet
-    ? "https://testnet.mirrornode.hedera.com/api/v1/transactions"
-    : "https://mainnet.mirrornode.hedera.com/api/v1/transactions";
+    ? 'https://testnet.mirrornode.hedera.com/api/v1/transactions'
+    : 'https://mainnet.mirrornode.hedera.com/api/v1/transactions';
 
   const queryParams = new URLSearchParams({
     result,
     transactiontype: transactionType,
-    order: "asc", // keep this constant.
+    order: 'asc', // keep this constant.
     limit,
   });
 
   if (lastTimestamp) {
-    queryParams.append("timestamp", `gt:${lastTimestamp}`);
+    queryParams.append('timestamp', `gt:${lastTimestamp}`);
   }
 
   try {
@@ -46,11 +46,11 @@ async function getTransactions({
       });
       return response.data.transactions;
     } else {
-      console.error("No transactions found in response:", response.data);
+      console.error('No transactions found in response:', response.data);
       return [];
     }
   } catch (error) {
-    console.error("Error fetching transactions:", error);
+    console.error('Error fetching transactions:', error);
     return [];
   }
 }

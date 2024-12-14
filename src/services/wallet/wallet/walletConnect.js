@@ -1,23 +1,23 @@
-import { HashConnect } from "hashconnect";
-import { LedgerId } from "@hashgraph/sdk";
+import { HashConnect } from 'hashconnect';
+import { LedgerId } from '@hashgraph/sdk';
 
 async function walletConnectFn() {
-  console.log("Connecting wallet...");
+  console.log('Connecting wallet...');
 
   let saveData = {
-    topic: "",
-    pairingString: "",
-    privateKey: "",
+    topic: '',
+    pairingString: '',
+    privateKey: '',
     pairedWalletData: null,
     pairedAccounts: [],
   };
   let appMetadata = {
-    name: "Ticket Tokens",
-    description: "Event Ticket Marketplace on Hedera",
+    name: 'Ticket Tokens',
+    description: 'Event Ticket Marketplace on Hedera',
     icons: [
-      "https://raw.githubusercontent.com/ed-marquez/hedera-dapp-days/testing/src/assets/hederaLogo.png",
+      'https://raw.githubusercontent.com/ed-marquez/hedera-dapp-days/testing/src/assets/hederaLogo.png',
     ],
-    url: "https://your-dapp-url.com",
+    url: 'https://your-dapp-url.com',
   };
 
   // create HashConnect instance
@@ -30,37 +30,37 @@ async function walletConnectFn() {
     true
   );
 
-  console.log("Initializing HashConnect...");
+  console.log('Initializing HashConnect...');
   try {
     // register events
     hashconnect.pairingEvent.on((newPairing) => {
-      console.log("Pairing event triggered:", newPairing);
+      console.log('Pairing event triggered:', newPairing);
       saveData.pairedAccounts = newPairing.accountIds;
       saveData.pairedWalletData = newPairing.metadata;
     });
 
     hashconnect.disconnectionEvent.on(() => {
-      console.log("Disconnected from wallet.");
+      console.log('Disconnected from wallet.');
     });
 
     hashconnect.connectionStatusChangeEvent.on((connectionStatus) => {
-      console.log("Connection status changed:", connectionStatus);
+      console.log('Connection status changed:', connectionStatus);
     });
 
     // init HashConnect
     await hashconnect.init();
-    console.log("- HashConnect initialized successfully.");
+    console.log('- HashConnect initialized successfully.');
 
     // open pairing modal
     hashconnect.openPairingModal();
 
     // Generate pairing string (optional if using modal)
     const pairingString = hashconnect.generatePairingString({
-      network: "testnet",
+      network: 'testnet',
     });
-    console.log("- Pairing string:", pairingString);
+    console.log('- Pairing string:', pairingString);
   } catch (error) {
-    console.error("Error during wallet connection:", error.message);
+    console.error('Error during wallet connection:', error.message);
     throw error;
   }
 

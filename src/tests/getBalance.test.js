@@ -1,5 +1,5 @@
-import getBalance from "../services/local/account/getBalance";
-import getClient from "../services/local/account/getClient";
+import getBalance from '../services/local/account/getBalance';
+import getClient from '../services/local/account/getClient';
 import { AccountBalanceQuery } from '@hashgraph/sdk';
 
 jest.mock('../services/local/account/getClient');

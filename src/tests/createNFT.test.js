@@ -1,5 +1,5 @@
-import createNFT from "../services/local/tokens/createNFT";
-import getClient from "../services/local/account/getClient";
+import createNFT from '../services/local/tokens/createNFT';
+import getClient from '../services/local/account/getClient';
 import {
   Client,
   PrivateKey,
@@ -9,7 +9,6 @@ import {
 } from '@hashgraph/sdk';
 
 describe('createNFT', () => {
-
   // Having issues with this... will fix if have time
   // test('returns are defined simple test', async () => {
   //   const client = getClient();

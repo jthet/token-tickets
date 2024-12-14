@@ -1,5 +1,5 @@
-import { AccountBalanceQuery } from "@hashgraph/sdk";
-import { defaultAccountId } from "../config/dotenv.js";
+import { AccountBalanceQuery } from '@hashgraph/sdk';
+import { defaultAccountId } from '../config/dotenv.js';
 
 export async function getBalance({
   client,
@@ -7,7 +7,7 @@ export async function getBalance({
 } = {}) {
   if (!accountId || !client) {
     throw new Error(
-      "Both accountId and client are required to get the account balance"
+      'Both accountId and client are required to get the account balance'
     );
   }
 

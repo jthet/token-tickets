@@ -1,5 +1,5 @@
-import { defaultAccountId, defaultPrivateKey } from "../config/dotenv.js";
-import verifyAccount from "../account/verifyAccount.js";
+import { defaultAccountId, defaultPrivateKey } from '../config/dotenv.js';
+import verifyAccount from '../account/verifyAccount.js';
 
 import {
   Client,
@@ -11,7 +11,7 @@ import {
   TokenCreateTransaction,
   TokenType,
   TokenSupplyType,
-} from "@hashgraph/sdk";
+} from '@hashgraph/sdk';
 
 // Note to go back to: right now the treasuryAccount and Client are same by default
 async function createNFT({
@@ -24,7 +24,7 @@ async function createNFT({
   treasurePrivateKey = defaultPrivateKey, // if not here we will use the getClient operator default
 } = {}) {
   if (!tokenName || !tokenSymbol) {
-    throw new Error("Both tokenName and tokenSymbol are required");
+    throw new Error('Both tokenName and tokenSymbol are required');
   }
 
   // will throw error if account not verifies

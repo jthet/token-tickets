@@ -1,4 +1,4 @@
-import { TokenAssociateTransaction } from "@hashgraph/sdk";
+import { TokenAssociateTransaction } from '@hashgraph/sdk';
 
 async function associateToken(
   client,

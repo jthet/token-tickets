@@ -1,4 +1,4 @@
-import { PrivateKey, AccountInfoQuery } from "@hashgraph/sdk";
+import { PrivateKey, AccountInfoQuery } from '@hashgraph/sdk';
 
 /**
  * Verifies that the provided account ID and private key match.
@@ -18,13 +18,13 @@ async function verifyAccountIdAndPrivateKey(
   // client here is only used to submit api requests.
   try {
     if (!accountId || !privateKeyString) {
-      throw new Error("Both accountId and privateKeyString are required");
+      throw new Error('Both accountId and privateKeyString are required');
     }
     // Derive the public key from the private key
     try {
       const privateKey = PrivateKey.fromStringDer(privateKeyString);
     } catch (error) {
-      throw new Error("Invalid private key (must be DER encoded):\n", error);
+      throw new Error('Invalid private key (must be DER encoded):\n', error);
     }
 
     const privateKey = PrivateKey.fromStringDer(privateKeyString);
@@ -44,7 +44,7 @@ async function verifyAccountIdAndPrivateKey(
       return false; // The private key does not match the AccountID
     }
   } catch (error) {
-    console.error("Error verifying account ID and private key:", error);
+    console.error('Error verifying account ID and private key:', error);
     return false;
   }
 }

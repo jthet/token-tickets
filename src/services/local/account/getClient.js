@@ -1,16 +1,16 @@
-const { Client, Hbar, PrivateKey, AccountId } = require("@hashgraph/sdk");
-const { defaultAccountId, defaultPrivateKey } = require("../config/dotenv.js");
+const { Client, Hbar, PrivateKey, AccountId } = require('@hashgraph/sdk');
+const { defaultAccountId, defaultPrivateKey } = require('../config/dotenv.js');
 
 function getClient({
   accountId = defaultAccountId,
   privateKey = defaultPrivateKey,
-  network = "testnet",
+  network = 'testnet',
 } = {}) {
   const client =
-    network === "mainnet" ? Client.forMainnet() : Client.forTestnet();
+    network === 'mainnet' ? Client.forMainnet() : Client.forTestnet();
 
-  console.log("defaultAccountId:", accountId);
-  console.log("defaultPrivateKey:", privateKey);
+  console.log('defaultAccountId:', accountId);
+  console.log('defaultPrivateKey:', privateKey);
 
   try {
     // Validate accountId and privateKey
@@ -18,11 +18,11 @@ function getClient({
     const privateKeyObj = PrivateKey.fromString(privateKey);
 
     client.setOperator(accountIdObj, privateKeyObj);
-    console.log("Operator successfully set.");
+    console.log('Operator successfully set.');
   } catch (error) {
-    console.error("Failed to set operator:", error.message);
+    console.error('Failed to set operator:', error.message);
     client.close();
-    throw new Error("Failed to set operator");
+    throw new Error('Failed to set operator');
   }
 
   // // Set default configurations

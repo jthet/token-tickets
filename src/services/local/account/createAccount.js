@@ -1,4 +1,8 @@
-const { PrivateKey, AccountCreateTransaction, Hbar } = require("@hashgraph/sdk");
+const {
+  PrivateKey,
+  AccountCreateTransaction,
+  Hbar,
+} = require('@hashgraph/sdk');
 
 async function createAccount(client) {
   // returns receipt, newAccountPublicKey, newAccountPrivateKey in DER format

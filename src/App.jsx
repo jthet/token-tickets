@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import MyGroup from "./components/MyGroup.jsx";
-import walletConnectFn from "./services/wallet/wallet/walletConnect.js";
-import "./styles/App.css";
+import React, { useState } from 'react';
+import MyGroup from './components/MyGroup.jsx';
+import walletConnectFn from './services/wallet/wallet/walletConnect.js';
+import './styles/App.css';
 
 function App() {
-  const [walletData, setWalletData] = useState();
+  // const [walletData, setWalletData] = useState();
   const [accountId, setAccountId] = useState();
 
-  const [connectTextSt, setConnectTextSt] = useState("🔌 Connect here...");
-  const [createTextSt, setCreateTextSt] = useState("");
+  const [connectTextSt, setConnectTextSt] = useState('🔌 Connect here...');
+  // const [createTextSt, setCreateTextSt] = useState('');
 
-  const [connectLinkSt, setConnectLinkSt] = useState("");
+  const [connectLinkSt, setConnectLinkSt] = useState('');
 
   async function connectWallet() {
     if (accountId !== undefined) {
@@ -29,18 +29,18 @@ function App() {
       });
     }
   }
-  function prettify(txIdRaw) {
-    const a = txIdRaw.split("@");
-    const b = a[1].split(".");
-    return `${a[0]}-${b[0]}-${b[1]}`;
-  }
+  // function prettify(txIdRaw) {
+  //   const a = txIdRaw.split('@');
+  //   const b = a[1].split('.');
+  //   return `${a[0]}-${b[0]}-${b[1]}`;
+  // }
 
   return (
     <div className="App">
       <h1 className="header">Let's buidl a dapp on Hedera!</h1>
       <MyGroup
         fcn={connectWallet}
-        buttonLabel={"Connect Wallet"}
+        buttonLabel={'Connect Wallet'}
         text={connectTextSt}
         link={connectLinkSt}
       />

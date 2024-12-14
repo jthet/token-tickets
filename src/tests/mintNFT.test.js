@@ -38,7 +38,7 @@ describe('mintNFT', () => {
     //   CID,
     // });
 
-    expect(1 === 1); 
+    expect(1 === 1);
     // Placeholder
     // "verifyAccountIdAndPrivateKey" is broken ... will fix later
     // expect(mintReceipt.status.toString()).toBe('SUCCESS');
