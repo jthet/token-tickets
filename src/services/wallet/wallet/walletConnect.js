@@ -1,9 +1,8 @@
 import { HashConnect } from "hashconnect";
 import { LedgerId } from "@hashgraph/sdk";
 
-async function walletConnectFcn() {
-  console.log("\n=======================================");
-  console.log("- Connecting wallet...");
+async function walletConnectFn() {
+  console.log("Connecting wallet...");
 
   let saveData = {
     topic: "",
@@ -13,16 +12,17 @@ async function walletConnectFcn() {
     pairedAccounts: [],
   };
   let appMetadata = {
-    name: "Hedera dApp Days",
-    description: "Let's buidl a dapp on Hedera",
+    name: "Ticket Tokens",
+    description: "Event Ticket Marketplace on Hedera",
     icons: [
       "https://raw.githubusercontent.com/ed-marquez/hedera-dapp-days/testing/src/assets/hederaLogo.png",
     ],
-    url: "https://your-dapp-url.com", // Replace with your actual DApp URL
+    url: "https://your-dapp-url.com",
   };
 
-  // Create HashConnect instance
-  const projectId = "d96d9894e9b8da5745a27cbd68e761c1"; // Replace with your project ID
+  // create HashConnect instance
+  const hashconnectProjectId = process.env.REACT_APP_HASHCONNECT_PROJECT_ID;
+  const projectId = hashconnectProjectId;
   const hashconnect = new HashConnect(
     LedgerId.TESTNET,
     projectId,
@@ -32,7 +32,7 @@ async function walletConnectFcn() {
 
   console.log("Initializing HashConnect...");
   try {
-    // Register events
+    // register events
     hashconnect.pairingEvent.on((newPairing) => {
       console.log("Pairing event triggered:", newPairing);
       saveData.pairedAccounts = newPairing.accountIds;
@@ -47,11 +47,11 @@ async function walletConnectFcn() {
       console.log("Connection status changed:", connectionStatus);
     });
 
-    // Initialize HashConnect
+    // init HashConnect
     await hashconnect.init();
     console.log("- HashConnect initialized successfully.");
 
-    // Open pairing modal
+    // open pairing modal
     hashconnect.openPairingModal();
 
     // Generate pairing string (optional if using modal)
@@ -67,4 +67,4 @@ async function walletConnectFcn() {
   return hashconnect;
 }
 
-export default walletConnectFcn;
+export default walletConnectFn;

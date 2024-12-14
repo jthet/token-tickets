@@ -1,6 +1,6 @@
 {
-  "name": "dapp-days",
-  "version": "0.1.0",
+  "name": "ticket-tokens",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@hashgraph/sdk": "^2.55.1",

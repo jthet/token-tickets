@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MyGroup from "./components/MyGroup.jsx";
-import walletConnectFcn from "./services/wallet/walletConnect.js";
+import walletConnectFn from "./services/wallet/wallet/walletConnect.js";
 import "./styles/App.css";
 
 function App() {
@@ -16,9 +16,9 @@ function App() {
     if (accountId !== undefined) {
       setConnectTextSt(`🔌 Account ${accountId} already connected ⚡ ✅`);
     } else {
-      const hashconnect = await walletConnectFcn(); // Now it returns only the hashconnect instance
+      const hashconnect = await walletConnectFn(); // returns hashconnect instance
 
-      // Pairing event is already registered inside walletConnectFcn
+      // Pairing event is already inside walletConnectFn
       hashconnect.pairingEvent.on((pairingData) => {
         pairingData.accountIds.forEach((id) => {
           setAccountId(id);
