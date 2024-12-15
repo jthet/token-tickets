@@ -1,25 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import Button from './Button';
-import '../styles/HeroSection.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+import Button from "./Button";
+import "../styles/HeroSection.css";
 
 const HeroSection = () => {
-  const words = [
-    'Concert',
-    'Festival',
-    'Rodeo',
-    'Rave',
-    'Tailgate',
-    'Basketball',
-    'Broadway',
-    'Carnival',
-    'Hockey',
-    'Film Festival',
-    'Formula 1',
-    'Comedy Show',
-    'Symphony',
-    'Ticket', // Final word
-  ];
+  const navigate = useNavigate();
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  const words = [
+    "Concert",
+    "Festival",
+    "Rodeo",
+    "Rave",
+    "Tailgate",
+    "Basketball",
+    "Broadway",
+    "Carnival",
+    "Hockey",
+    "Film Festival",
+    "Formula 1",
+    "Comedy Show",
+    "Symphony",
+    "Ticket", // Final word
+  ];
 
   useEffect(() => {
     if (currentWordIndex < words.length - 1) {
@@ -31,6 +35,16 @@ const HeroSection = () => {
     }
   }, [currentWordIndex, words.length]);
 
+  const goToAboutPage = () => {
+    console.log("Navigating to /about"); // Debug log
+    navigate("/about");
+  };
+
+  const goToMarketplacePage = () => {
+    console.log("Navigating to /marketplace"); // Debug log
+    navigate("/marketplace");
+  };
+
   return (
     <section className="hero bg-black text-center py-5">
       <div className="container">
@@ -39,7 +53,7 @@ const HeroSection = () => {
           <span className="rotating-word-container">
             <span
               className={`rotating-word ${
-                currentWordIndex === words.length - 1 ? 'static-word' : ''
+                currentWordIndex === words.length - 1 ? "static-word" : ""
               }`}
             >
               {words[currentWordIndex]}
@@ -47,11 +61,19 @@ const HeroSection = () => {
           </span>
         </h1>
         <p className="lead text-white-50">
-          Manage your assets anywhere, anytime.
+          Event tickets anytime, anywhere.
         </p>
         <div className="d-flex justify-content-center gap-3 mt-4">
-          <Button label="Use MyApp" variant="primary" />
-          <Button label="Play Video" variant="outline" />
+          <Button
+            label="Learn More"
+            variant="primary"
+            onClick={goToAboutPage} // Navigate to About page
+          />
+          <Button
+            label="Launch App"
+            variant="outline"
+            onClick={goToMarketplacePage} // Navigate to Marketplace page
+          />
         </div>
       </div>
     </section>

@@ -2,12 +2,37 @@
   background-color: #121212;
 }
 
+.features-container, .about-features-container {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Horizontally center the cards */
+  align-items: center; /* Vertically center if necessary */
+  gap: 20px; /* Add space between cards */
+  flex-wrap: wrap; /* Wrap to the next line if needed */
+  margin: 0 auto; /* Center the container itself */
+  max-width: 1200px; /* Optional: prevent container from stretching too wide */
+  padding: 20px; /* Add padding to avoid content touching edges */
+}
+
 .feature-card {
   background-color: #1a1a1a;
   border-radius: 10px;
-  transition: transform 0.3s ease;
+  border: 1px solid #9b59b6;
+  padding: 20px;
+  text-align: center;
+  width: 300px; /* Consistent card width */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card h3 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  color: #e0e0e0;
 }
 
 .feature-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0px 4px 20px rgba(155, 89, 182, 0.5);
 }
