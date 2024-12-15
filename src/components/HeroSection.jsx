@@ -10,7 +10,7 @@ const HeroSection = () => {
     'Rave',
     'Tailgate',
     'Basketball',
-    'Broadway Show',
+    'Broadway',
     'Carnival',
     'Hockey',
     'Film Festival',
