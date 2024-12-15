@@ -1,0 +1,55 @@
+/* General Styling */
+.get-started-container {
+  background-color: #000; /* Black background */
+  color: #d3d3d3; /* Light gray text */
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  padding-top: 80px; /* Push content below the header */
+  text-align: center;
+}
+
+/* Hero Section */
+.get-started-hero {
+  background-color: #000; /* Slightly lighter black */
+  padding: 60px 20px;
+}
+
+.get-started-title {
+  color: white;
+  font-size: 3rem;
+  position: relative;
+}
+
+.get-started-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #9b59b6; /* Purple underline */
+  margin: 10px auto 0;
+}
+
+.get-started-subtitle {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #d3d3d3; /* Light gray text */
+}
+
+/* Content Section */
+.get-started-content {
+  padding: 40px 20px;
+  background-color: #000; /* Black background */
+}
+
+.get-started-content h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.get-started-content p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  color: #d3d3d3; /* Light gray text */
+}

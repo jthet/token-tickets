@@ -25,8 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
-    "lint": "eslint 'src/**/*.{js,jsx}' --fix",
-    "prettier": "prettier --write 'src/**/*.{js,jsx,json,css,md}'"
+    "lint": "eslint --config config/.eslintrc.json --ignore-path config/.eslintignore 'src/**/*.{js,jsx}' --fix",
+    "prettier": "prettier --config config/.prettierrc --ignore-path config/.prettierignore --write 'src/**/*.{js,jsx,json,css,md}'"
   },
   "eslintConfig": {
     "extends": [
