@@ -1,0 +1,61 @@
+/* Flexbox Container for Static and Rotating Text */
+.flex-text {
+  display: flex;
+  align-items: baseline; /* Align static and rotating text on the same line */
+  justify-content: center; /* Center align the text */
+  gap: 0.3em; /* Add space between static and rotating text */
+}
+
+/* Static Text */
+.static-text {
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Rotating Word Container */
+.rotating-word-container {
+  display: inline-block;
+  width: 200px; /* Fixed width to prevent layout shifts */
+  height: 01em; /* Ensure enough space for words */
+  text-align: center; /* Center the rotating word */
+  position: relative; /* Allow inner word animation */
+  line-height: inherit; /* Match the line-height of the parent container */
+}
+
+/* Rotating Word */
+.rotating-word {
+  display: inline-block;
+  position: absolute;
+  top: 0; /* Align the word with the container's top */
+  left: 0; /* Keep it aligned with the container */
+  animation: fly-in-out 3s ease-in-out infinite;
+  color: #9b59b6;
+  white-space: nowrap; /* Prevent wrapping */
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Stop Animation for the Last Word */
+.static-word {
+  animation: none;
+  color: #9b59b6;
+  font-weight: bold;
+}
+
+/* Keyframes for Fly-In and Fly-Out Animations */
+@keyframes fly-in-out {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}

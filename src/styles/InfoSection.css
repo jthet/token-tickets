@@ -1,0 +1,21 @@
+.info-section {
+  background-color: #121212;
+}
+
+.info-section h3 {
+  font-weight: bold;
+}
+
+.icon-circle {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #9b59b6; /* Neon Purple */
+}
+
+.img-fluid {
+  border-radius: 10px;
+}

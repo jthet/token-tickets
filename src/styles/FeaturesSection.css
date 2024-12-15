@@ -1,0 +1,14 @@
+.features-section {
+  background-color: #121212;
+}
+
+.feature-card {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
