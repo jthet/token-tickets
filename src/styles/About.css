@@ -1,0 +1,228 @@
+/* General Styling */
+.about-container {
+  background-color: #000; /* Black background */
+  color: #d3d3d3; /* Light gray text */
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  padding-top: 80px; /* Push content down to avoid being covered by the header */
+  text-align: center; /* Center all text */
+}
+
+/* Hero Section */
+.about-hero {
+  background-color: #000; /* Black background */
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.about-hero .about-title {
+  color: white;
+  font-size: 3rem;
+  position: relative;
+}
+
+.about-hero .about-title::after {
+  content: "";
+  display: block;
+  width: 60px; /* Adjust width of underline */
+  height: 3px; /* Adjust thickness of underline */
+  background-color: #9b59b6; /* Purple underline */
+  margin: 10px auto 0; /* Center and add spacing */
+}
+
+.about-hero .highlight {
+  color: #9b59b6; /* Purple text for highlight */
+}
+
+.about-hero .about-subtitle {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #d3d3d3; /* Light gray text for subtitle */
+}
+
+/* Introduction Section */
+.about-introduction {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #000; /* Black background */
+}
+
+.about-introduction h2 {
+  color: white; /* White heading */
+  font-size: 2rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.about-introduction h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #9b59b6; /* Purple underline */
+  margin: 10px auto 0;
+}
+
+.about-introduction p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #d3d3d3; /* Light gray text */
+}
+
+/* Features Section */
+.about-features {
+  background-color: #000; /* Black background */
+  padding: 40px 20px;
+}
+
+.about-features h2 {
+  color: white; /* White heading */
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.about-features h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #9b59b6; /* Purple underline */
+  margin: 10px auto 0;
+}
+
+.features-list {
+  max-width: 800px;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+  line-height: 2;
+  color: #d3d3d3; /* Light gray text */
+}
+
+.features-list li {
+  margin-bottom: 15px;
+}
+
+.features-list strong {
+  color: white; /* White text for emphasis */
+}
+
+/* Call-to-Action Section */
+.about-cta {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #000; /* Black background */
+}
+
+.about-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: white; /* White heading */
+  position: relative;
+}
+
+.about-cta h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #9b59b6; /* Purple underline */
+  margin: 10px auto 0;
+}
+
+.about-cta p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #d3d3d3; /* Light gray text */
+}
+
+.cta-button {
+  background-color: #9b59b6; /* Purple button */
+  color: white; /* White text */
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #e040fb; /* Light purple on hover */
+  box-shadow: 0px 4px 20px rgba(224, 64, 251, 0.5);
+  transform: scale(1.05);
+}
+
+/* GitHub Section */
+.github-section {
+  background-color: #000; /* Slightly lighter black */
+  text-align: center;
+  padding: 50px 20px;
+  margin-top: 20px;
+}
+
+.github-section h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.github-section h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #9b59b6; /* Purple underline */
+  margin: 10px auto 0;
+}
+
+.github-section p {
+  color: #d3d3d3; /* Light gray text */
+  margin: 0 auto 20px;
+  max-width: 700px;
+}
+
+.github-logo-button {
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.github-logo {
+  width: 60px; /* Adjust size */
+  height: 60px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.github-logo-button:hover .github-logo {
+  transform: scale(1.2); /* Slight zoom on hover */
+  box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.5); /* Glow effect */
+}
+
+/* GitHub and Hedera Section */
+.github-section {
+  background-color: #000; /* Black background */
+  padding: 40px 0;
+  text-align: center;
+}
+
+.logo-button {
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo {
+  width: 60px; /* Logo size */
+  height: 60px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.logo:hover {
+  transform: scale(1.2);
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2); /* Subtle glow on hover */
+}
