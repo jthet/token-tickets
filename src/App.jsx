@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import About from './pages/About';
-// import Develop from './pages/Develop';
-import './styles/App.css';
-import walletConnect from './services/wallet/wallet/walletConnect';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // eslint-disable-line
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import GetStarted from "./pages/GetStarted";
+// import Marketplace from "./pages/Marketplace";
+import "./styles/App.css";
+import walletConnect from "./services/wallet/wallet/walletConnect";
 
 function App() {
   const [accountId, setAccountId] = useState(undefined);
-  const [connectLinkSt, setConnectLinkSt] = useState('');
+  const [connectLinkSt, setConnectLinkSt] = useState("");
 
   const connectWallet = async () => {
     if (accountId) {
@@ -26,26 +27,26 @@ function App() {
           );
         });
       } catch (error) {
-        console.error('Error connecting wallet:', error.message);
+        console.error("Error connecting wallet:", error.message);
       }
     }
   };
 
   return (
-    <Router>
-      <div className="bg-black text-white min-vh-100">
-        <Navbar
-          connectWallet={connectWallet}
-          accountId={accountId}
-          connectLinkSt={connectLinkSt}
-        />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          {/* <Route path="/develop" element={<Develop />} /> */}
-        </Routes>
-      </div>
-    </Router>
+    // Router wraps this in index.js
+    <div className="bg-black text-white min-vh-100">
+      <Navbar
+        connectWallet={connectWallet}
+        accountId={accountId}
+        connectLinkSt={connectLinkSt}
+      />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/getStarted" element={<GetStarted />} />
+        {/* <Route path="/marketplace" element={<Marketplace />} /> */}
+      </Routes>
+    </div>
   );
 }
 
