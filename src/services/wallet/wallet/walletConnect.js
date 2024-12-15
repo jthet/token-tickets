@@ -1,7 +1,7 @@
 import { HashConnect } from 'hashconnect';
 import { LedgerId } from '@hashgraph/sdk';
 
-async function walletConnectFn() {
+async function walletConnect() {
   console.log('Connecting wallet...');
 
   let saveData = {
@@ -67,4 +67,4 @@ async function walletConnectFn() {
   return hashconnect;
 }
 
-export default walletConnectFn;
+export default walletConnect;

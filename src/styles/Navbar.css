@@ -1,0 +1,97 @@
+/* Navbar Container */
+.top-bar {
+  background-color: transparent !important;
+  border-bottom: none !important;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Logo Container */
+.logo {
+  color: #9b59b6;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+/* Logo Image */
+.logo-img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Navigation Links Container */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  gap: 30px;
+}
+
+/* Navigation Links */
+.nav-link {
+  text-decoration: none !important;
+  color: #9b59b6;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #e040fb;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #e040fb;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Connect Button */
+.connect-button {
+  background-color: #9b59b6;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 150px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.connect-button:hover {
+  background-color: #e040fb;
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(224, 64, 251, 0.5);
+}
+
+/* Position Relative for Parent Containers */
+.position-relative {
+  position: relative;
+}
