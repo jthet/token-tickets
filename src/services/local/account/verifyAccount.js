@@ -21,11 +21,11 @@ async function verifyAccountIdAndPrivateKey(
       throw new Error('Both accountId and privateKeyString are required');
     }
     // Derive the public key from the private key
-    try {
-      const privateKey = PrivateKey.fromStringDer(privateKeyString);
-    } catch (error) {
-      throw new Error('Invalid private key (must be DER encoded):\n', error);
-    }
+    // try {
+    //   const privateKey = PrivateKey.fromStringDer(privateKeyString);
+    // } catch (error) {
+    //   throw new Error('Invalid private key (must be DER encoded):\n', error);
+    // }
 
     const privateKey = PrivateKey.fromStringDer(privateKeyString);
     const publicKey = privateKey.publicKey;

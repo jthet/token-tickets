@@ -1,12 +1,12 @@
 import createNFT from '../services/local/tokens/createNFT';
 import getClient from '../services/local/account/getClient';
-import {
-  Client,
-  PrivateKey,
-  TokenCreateTransaction,
-  TokenType,
-  TokenSupplyType,
-} from '@hashgraph/sdk';
+// import {
+//   Client,
+//   PrivateKey,
+//   TokenCreateTransaction,
+//   TokenType,
+//   TokenSupplyType,
+// } from '@hashgraph/sdk';
 
 describe('createNFT', () => {
   // Having issues with this... will fix if have time

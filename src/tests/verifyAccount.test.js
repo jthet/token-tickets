@@ -1,8 +1,8 @@
 import verifyAccount from '../services/local/account/verifyAccount.js';
-import {
-  defaultAccountId,
-  defaultPrivateKey,
-} from '../services/local/config/dotenv.js';
+// import {
+//   defaultAccountId,
+//   defaultPrivateKey,
+// } from '../services/local/config/dotenv.js';
 import getClient from '../services/local/account/getClient.js';
 
 describe('verifyAccount', () => {

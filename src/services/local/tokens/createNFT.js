@@ -2,12 +2,12 @@ import { defaultAccountId, defaultPrivateKey } from '../config/dotenv.js';
 import verifyAccount from '../account/verifyAccount.js';
 
 import {
-  Client,
+  // Client,
   PrivateKey,
-  AccountCreateTransaction,
-  AccountBalanceQuery,
-  Hbar,
-  TransferTransaction,
+  // AccountCreateTransaction,
+  // AccountBalanceQuery,
+  // Hbar,
+  // TransferTransaction,
   TokenCreateTransaction,
   TokenType,
   TokenSupplyType,

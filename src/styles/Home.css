@@ -22,7 +22,9 @@
   border-radius: 10px;
   border: 1px solid #9b59b6; /* Purple border */
   color: white;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .testimonial-card:hover {
@@ -52,5 +54,3 @@
   position: relative;
   height: 1.2em; /* Ensure enough space for words */
 }
-
-

@@ -2,7 +2,9 @@
   background-color: #1a1a1a;
   border-radius: 10px;
   border: 1px solid #9b59b6;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .testimonial-card:hover {

@@ -1,4 +1,4 @@
-const { Client, Hbar, PrivateKey, AccountId } = require('@hashgraph/sdk');
+const { Client, PrivateKey, AccountId } = require('@hashgraph/sdk');
 const { defaultAccountId, defaultPrivateKey } = require('../config/dotenv.js');
 
 function getClient({
