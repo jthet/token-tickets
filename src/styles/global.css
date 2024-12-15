@@ -1,0 +1,18 @@
+/* global.css */
+html, body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  height: 100%; /* Ensure they occupy the full viewport height */
+  background-color: #000; /* Set black background color */
+  overflow-x: hidden; /* Prevent horizontal scrolling if there's a width overflow */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit; /* Inherit box-sizing for all elements */
+}
+
+a {
+  text-decoration: none; /* Remove underline for links globally */
+  color: inherit; /* Use the same color as the text */
+}
+

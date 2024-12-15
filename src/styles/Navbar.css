@@ -1,6 +1,6 @@
 /* Navbar Container */
 .top-bar {
-  background-color: transparent !important;
+  background-color: black !important;
   border-bottom: none !important;
   margin: 0;
   padding: 0;
@@ -15,12 +15,21 @@
 }
 
 /* Logo Container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  transform: translateX(0); /* Default position */
+  transition: transform 0.3s ease; /* Smooth movement on resize */
+}
+
+/* Logo */
 .logo {
   color: #9b59b6;
   font-size: 24px;
   font-weight: bold;
   text-decoration: none;
   margin-left: 10px;
+  transition: transform 0.3s ease; /* Smooth movement */
 }
 
 /* Logo Image */
@@ -29,6 +38,7 @@
   width: 30px;
   border-radius: 50%;
   margin-right: 10px;
+  transition: transform 0.3s ease; /* Smooth logo movement */
 }
 
 /* Navigation Links Container */
@@ -38,6 +48,7 @@ nav {
   align-items: center;
   flex-grow: 1;
   gap: 30px;
+  transition: all 0.3s ease;
 }
 
 /* Navigation Links */
@@ -45,7 +56,7 @@ nav {
   text-decoration: none !important;
   color: #9b59b6;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-link::after {
@@ -95,3 +106,5 @@ nav {
 .position-relative {
   position: relative;
 }
+
+

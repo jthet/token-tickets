@@ -26,14 +26,14 @@ const Navbar = ({ connectWallet, accountId, connectLinkSt }) => {
     <header className="top-bar py-3">
       <div className="container d-flex justify-content-between align-items-center">
         {/* Logo */}
-        <div className="d-flex align-items-center">
+        <div className="logo-container">
           <img
             src="/path-to-your-logo.png" /* Replace with your logo's path */
             alt="Logo"
             className="logo-img"
           />
           <Link to="/" className="logo fw-bold">
-            MyApp
+            Token Tickets
           </Link>
         </div>
 
@@ -45,8 +45,11 @@ const Navbar = ({ connectWallet, accountId, connectLinkSt }) => {
           <Link to="/about" className="nav-link">
             About
           </Link>
-          <Link to="/develop" className="nav-link">
-            Develop
+          <Link to="/getStarted" className="nav-link">
+            Get Started
+          </Link>
+          <Link to="/marketplace" className="nav-link">
+            Marketplace
           </Link>
         </nav>
 
@@ -58,7 +61,7 @@ const Navbar = ({ connectWallet, accountId, connectLinkSt }) => {
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
           >
-            {accountId ? (hovered ? accountId : 'Connected') : 'Connect'}
+            {accountId ? (hovered ? accountId : "Connected") : "Connect"}
           </button>
         </div>
       </div>
