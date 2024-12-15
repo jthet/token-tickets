@@ -18,8 +18,9 @@
 .logo-container {
   display: flex;
   align-items: center;
-  transform: translateX(0); /* Default position */
-  transition: transform 0.3s ease; /* Smooth movement on resize */
+  gap: 10px;
+  white-space: nowrap;
+  box-shadow: none !important;
 }
 
 /* Logo */
@@ -29,7 +30,18 @@
   font-weight: bold;
   text-decoration: none;
   margin-left: 10px;
-  transition: transform 0.3s ease; /* Smooth movement */
+  background-color: transparent;
+  box-shadow: none !important;
+  outline: none !important;
+  transition: none; /* Remove all transitions */
+}
+
+.logo:focus,
+.logo:hover {
+  color: #9b59b6; /* Keep the color consistent */
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 /* Logo Image */
@@ -38,7 +50,13 @@
   width: 30px;
   border-radius: 50%;
   margin-right: 10px;
-  transition: transform 0.3s ease; /* Smooth logo movement */
+  box-shadow: none !important;
+  transition: none; /* Remove all transitions */
+}
+
+.logo-img:hover {
+  box-shadow: none !important; /* No shadow on hover */
+  transform: none !important; /* No movement on hover */
 }
 
 /* Navigation Links Container */
@@ -48,7 +66,6 @@ nav {
   align-items: center;
   flex-grow: 1;
   gap: 30px;
-  transition: all 0.3s ease;
 }
 
 /* Navigation Links */
@@ -56,7 +73,7 @@ nav {
   text-decoration: none !important;
   color: #9b59b6;
   position: relative;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .nav-link::after {
@@ -106,5 +123,3 @@ nav {
 .position-relative {
   position: relative;
 }
-
-

@@ -32,7 +32,7 @@ const Navbar = ({ connectWallet, accountId, connectLinkSt }) => {
             alt="Logo"
             className="logo-img"
           />
-          <Link to="/" className="logo fw-bold">
+          <Link to="/" className=" d-flex logo fw-bold align-items-center">
             Token Tickets
           </Link>
         </div>
