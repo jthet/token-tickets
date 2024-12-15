@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { logTransaction } from '../../../utils/transactions/logger.js';
+import { logTransaction } from '../utils/transactions/logger.js';
 
 // Function to fetch transactions from the Hedera mirror node
 async function getTransactions({
