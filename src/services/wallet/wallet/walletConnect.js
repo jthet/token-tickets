@@ -34,7 +34,7 @@ async function walletConnect() {
   try {
     // register events
     hashconnect.pairingEvent.on((newPairing) => {
-      console.log('Pairing event triggered:', newPairing);
+      // console.log('Pairing event triggered:', newPairing);
       saveData.pairedAccounts = newPairing.accountIds;
       saveData.pairedWalletData = newPairing.metadata;
     });

@@ -123,3 +123,29 @@ nav {
 .position-relative {
   position: relative;
 }
+
+/* Top Bar Adjustment */
+.top-bar {
+  display: flex;
+  justify-content: space-between; /* Space between the left (logo) and right (button) */
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Navigation Links Container (Centered) */
+nav {
+  flex: 1; /* Take remaining space */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  gap: 30px;
+}
+
+/* Adjust the Logo Container to Prevent Shrinking */
+.logo-container {
+  flex-shrink: 0; /* Prevent the logo container from shrinking */
+}
+
+/* Adjust the Connect Button to Prevent Shrinking */
+.position-relative {
+  flex-shrink: 0; /* Prevent the button container from shrinking */
+}

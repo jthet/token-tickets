@@ -1,10 +1,32 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import '../styles/Navbar.css';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
+import { AppStore, actions } from "../store/index.ts"; // Adjust the path based on your folder structure
+import { hc } from "../services/wallet/wallet/hashconnect.ts"; // Import HashConnect client
 
-const Navbar = ({ connectWallet, accountId, connectLinkSt }) => {
+const Navbar = () => {
   const [hovered, setHovered] = useState(false);
+  const dispatch = useDispatch();
+
+  // Access Redux state
+  const { isConnected, accountIds, pairingString } = useSelector(
+    (state: AppStore) => state.hashconnect
+  );
+
+  const accountId = accountIds[0]; // Get the first connected account ID
+
+  // Handle wallet connection
+  const connectWallet = () => {
+    if (!isConnected) {
+      hc.openPairingModal(); // Open HashConnect pairing modal
+    } else {
+      hc.disconnect(); // Disconnect the wallet
+      dispatch(actions.hashconnect.setIsConnected(false));
+      dispatch(actions.hashconnect.setAccountIds([]));
+      dispatch(actions.hashconnect.setPairingString(""));
+    }
+  };
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -15,10 +37,10 @@ const Navbar = ({ connectWallet, accountId, connectLinkSt }) => {
   };
 
   const handleClick = () => {
-    if (accountId && connectLinkSt) {
-      window.open(connectLinkSt, '_blank', 'noopener,noreferrer'); // Open HashScan link in a new tab
+    if (accountId && pairingString) {
+      window.open(`https://hashscan.io/testnet/account/${accountId}`, "_blank", "noopener,noreferrer"); // Open HashScan link
     } else {
-      connectWallet(); // Trigger wallet connection if not connected
+      connectWallet(); // Trigger wallet connection
     }
   };
 
@@ -28,11 +50,11 @@ const Navbar = ({ connectWallet, accountId, connectLinkSt }) => {
         {/* Logo */}
         <div className="logo-container">
           <img
-            src="/path-to-your-logo.png" /* Replace with your logo's path */
+            src="/path-to-your-logo.png" // Replace with your logo's path
             alt="Logo"
             className="logo-img"
           />
-          <Link to="/" className=" d-flex logo fw-bold align-items-center">
+          <Link to="/" className="d-flex logo fw-bold align-items-center">
             Token Tickets
           </Link>
         </div>
@@ -61,18 +83,16 @@ const Navbar = ({ connectWallet, accountId, connectLinkSt }) => {
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
           >
-            {accountId ? (hovered ? accountId : "Connected") : "Connect"}
+            {isConnected
+              ? hovered
+                ? accountId || "No Account"
+                : "Connected"
+              : "Connect"}
           </button>
         </div>
       </div>
     </header>
   );
-};
-
-Navbar.propTypes = {
-  connectWallet: PropTypes.func.isRequired,
-  accountId: PropTypes.string,
-  connectLinkSt: PropTypes.string,
 };
 
 export default Navbar;
