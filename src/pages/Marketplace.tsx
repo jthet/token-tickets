@@ -1,119 +1,87 @@
 import React, { useState } from "react";
-import {
-  AccountId,
-  PrivateKey,
-  TokenCreateTransaction,
-  TokenType,
-  TokenSupplyType,
-} from "@hashgraph/sdk";
-import { useSelector } from "react-redux";
-import { AppStore } from "../store";
-import {
-  executeTransaction,
-  hc,
-} from "../services/wallet/wallet/hashconnect.ts";
+import TokenFormCard from "../components/CreateTokenFormCard.tsx"; // Modular Create Token Form
+import "../styles/Marketplace.css";
 
 const Marketplace = () => {
-  const { accountIds: connectedAccountIds, isConnected } = useSelector(
-    (state: AppStore) => state.hashconnect
-  );
+  const [showCreateToken, setShowCreateToken] = useState(false);
+  const [showMintTokens, setShowMintTokens] = useState(false);
+  const [showViewTokens, setShowViewTokens] = useState(false);
 
-  const [fromAccountId, setFromAccountId] = useState("");
-  const [toAccountId, setToAccountId] = useState("");
+  const openCreateToken = () => {
+    setShowCreateToken(true);
+    setShowMintTokens(false);
+    setShowViewTokens(false);
+  };
+
+  const openMintTokens = () => {
+    setShowMintTokens(true);
+    setShowCreateToken(false);
+    setShowViewTokens(false);
+  };
+
+  const openViewTokens = () => {
+    setShowViewTokens(true);
+    setShowCreateToken(false);
+    setShowMintTokens(false);
+  };
 
   return (
-    <div className="about-container">
+    <div className="marketplace-container">
       {/* Hero Section */}
-      <section className="about-hero">
-        <h1 className="about-title">
+      <section className="marketplace-hero">
+        <h1 className="marketplace-title">
           Token <span className="highlight">Marketplace</span>
         </h1>
-        <p className="about-subtitle">
-          Create and manage tokens seamlessly with Hedera's secure network.
+        <p className="marketplace-subtitle">
+          Manage your tokens effortlessly with a modern, secure platform.
         </p>
       </section>
 
-      {/* Token Creation Form */}
-      {isConnected && (
-        <section className="about-cta">
-          <h2>Create a Token</h2>
-          <p>Fill out the details to create your own unique token.</p>
-          <div style={{ margin: "20px auto", maxWidth: "400px" }}>
-            {/* From Account */}
-            <div style={{ marginBottom: "20px" }}>
-              <label style={{ display: "block", marginBottom: "8px" }}>
-                From Account ID:
-              </label>
-              <select
-                className="cta-button"
-                style={{ width: "100%", padding: "10px" }}
-                value={fromAccountId}
-                onChange={(e) => setFromAccountId(e.target.value)}
-              >
-                <option value="" disabled>
-                  Select an Account
-                </option>
-                {connectedAccountIds.map((accountId) => (
-                  <option key={accountId} value={accountId}>
-                    {accountId}
-                  </option>
-                ))}
-              </select>
-            </div>
+      {/* Feature Options */}
+      <section className="marketplace-options">
+        <div className="marketplace-option" onClick={openCreateToken}>
+          <h3>Create Event Tokens</h3>
+          <p>Create a unique NFT ticke collection for your upcoming event</p>
+        </div>
 
-            {/* To Account */}
-            <div style={{ marginBottom: "20px" }}>
-              <label style={{ display: "block", marginBottom: "8px" }}>
-                To Account ID:
-              </label>
-              <input
-                className="cta-button"
-                type="text"
-                placeholder="Enter Account ID"
-                value={toAccountId}
-                onChange={(e) => setToAccountId(e.target.value)}
-                style={{ width: "100%", padding: "10px" }}
-              />
-            </div>
+        <div className="marketplace-option" onClick={openMintTokens}>
+          <h3>Mint Event Tickets</h3>
+          <p>Mint additional tickets for your existing events</p>
+        </div>
 
-            {/* Button */}
-            <button
-              className="cta-button"
-              onClick={async () => {
-                try {
-                  const supplyKey = PrivateKey.generateED25519();
-                  const signer = hc.getSigner(
-                    AccountId.fromString(fromAccountId)
-                  );
+        <div className="marketplace-option" onClick={openViewTokens}>
+          <h3>View Events</h3>
+          <p>Explore and manage the events in your account.</p>
+        </div>
+      </section>
 
-                  const frozenTransaction = await new TokenCreateTransaction()
-                    .setTokenName("Test Token")
-                    .setTokenSymbol("TEST")
-                    .setTokenType(TokenType.NonFungibleUnique)
-                    .setDecimals(0)
-                    .setInitialSupply(0)
-                    .setTreasuryAccountId(fromAccountId)
-                    .setSupplyType(TokenSupplyType.Finite)
-                    .setMaxSupply(500)
-                    .setSupplyKey(supplyKey)
-                    .freezeWithSigner(signer);
-
-                  const executeResult = await executeTransaction(
-                    AccountId.fromString(fromAccountId),
-                    frozenTransaction
-                  );
-                  console.log("Transaction Result:", executeResult);
-                  alert("Token Created Successfully!");
-                } catch (err) {
-                  console.error(err);
-                  alert("Failed to Create Token. See console for details.");
-                }
-              }}
-            >
-              Create Token
-            </button>
-          </div>
-        </section>
+      {/* Dynamic Pop-Up Cards */}
+      {showCreateToken && (
+        <TokenFormCard onClose={() => setShowCreateToken(false)} />
+      )}
+      {showMintTokens && (
+        <div className="placeholder-card">
+          <h2>Mint Tokens</h2>
+          <p>This is a placeholder for minting tokens. Coming soon!</p>
+          <button
+            className="close-button"
+            onClick={() => setShowMintTokens(false)}
+          >
+            Close
+          </button>
+        </div>
+      )}
+      {showViewTokens && (
+        <div className="placeholder-card">
+          <h2>View Tokens</h2>
+          <p>This is a placeholder for viewing tokens. Coming soon!</p>
+          <button
+            className="close-button"
+            onClick={() => setShowViewTokens(false)}
+          >
+            Close
+          </button>
+        </div>
       )}
     </div>
   );
