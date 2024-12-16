@@ -1,0 +1,82 @@
+/* General Styling */
+.about-container {
+  background-color: #000; /* Black background */
+  color: #d3d3d3; /* Light gray text */
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  padding-top: 80px;
+  text-align: center;
+}
+
+.about-title {
+  color: white;
+  font-size: 3rem;
+  position: relative;
+}
+
+.about-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #9b59b6;
+  margin: 10px auto 0;
+}
+
+.highlight {
+  color: #9b59b6;
+}
+
+.about-cta,
+.about-introduction {
+  padding: 40px 20px;
+}
+
+.about-cta h2,
+.about-introduction h2 {
+  color: white;
+  font-size: 2rem;
+  position: relative;
+}
+
+.about-cta h2::after,
+.about-introduction h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #9b59b6;
+  margin: 10px auto 0;
+}
+
+.cta-button {
+  background-color: #9b59b6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #e040fb;
+  box-shadow: 0px 4px 20px rgba(224, 64, 251, 0.5);
+  transform: scale(1.05);
+}
+
+.github-section {
+  padding: 40px 0;
+  background-color: #000;
+}
+
+.github-logo {
+  width: 60px;
+  height: 60px;
+  transition: transform 0.3s ease;
+}
+
+.github-logo:hover {
+  transform: scale(1.2);
+}
