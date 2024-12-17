@@ -122,6 +122,38 @@ router.get("/get-events-by-organizer/:organizerAccountId", async (req, res) => {
   }
 });
 
+router.get("/unique-events", async (req, res) => {
+  try {
+    const uniqueEvents = await Event.aggregate([
+      {
+        $group: {
+          _id: "$tokenId", // Group by tokenId
+          tokenName: { $first: "$tokenName" },
+          tokenSymbol: { $first: "$tokenSymbol" },
+          tokenMemo: { $first: "$tokenMemo" },
+        },
+      },
+      {
+        $project: {
+          _id: 0, // Exclude the MongoDB-generated _id
+          tokenId: "$_id",
+          tokenName: 1,
+          tokenSymbol: 1,
+          tokenMemo: 1,
+        },
+      },
+    ]);
+
+    if (!uniqueEvents || uniqueEvents.length === 0) {
+      return res.status(404).json({ error: "No unique events found." });
+    }
+
+    res.status(200).json(uniqueEvents);
+  } catch (err) {
+    console.error("Error fetching unique events:", err);
+    res.status(500).json({ error: "Failed to fetch unique events." });
+  }
+});
 
 
 module.exports = router;
