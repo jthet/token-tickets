@@ -1,0 +1,187 @@
+/* Container for the horizontal cards */
+.horizontal-events-container {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Set container height */
+  overflow: hidden; /*  Prevent cards from going outside */
+  background-color: transparent !important;
+  padding-bottom: -100px;
+  margin-bottom: -100px;
+}
+
+/* Wrapper for the cards */
+.horizontal-cards {
+  position: relative;
+  height: 100%;
+}
+
+/* Individual card */
+.event-card {
+  position: absolute;
+  width: 220px;
+  height: 270px;
+  background: #9a5db3;
+  border: 1px solid #ab1be3;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  animation: moveHorizontally 15s linear infinite; /* Horizontal animation */
+  /* left: 0%; Center horizontally */
+}
+
+/* Card Content */
+.card-content {
+  padding: 10px;
+}
+
+.event-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Horizontal animation keyframes */
+@keyframes moveHorizontally {
+  0% {
+    transform: translateX(-250px); /* Start off-screen to the left */
+  }
+  100% {
+    transform: translateX(100vw); /* Move across the entire screen */
+  }
+}
+
+/* Static Events Section */
+.static-events-container {
+  margin-top: -30px;
+  padding: 20px;
+  background-color: #000;
+  text-align: center;
+}
+
+.static-events-container h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Grid Layout for Events */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 20px;
+  justify-items: center;
+  margin-bottom: 20px;
+}
+
+/* Individual Card for Grid */
+.grid-event-card {
+  width: 220px;
+  height: 270px;
+  background: #b29eba;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.grid-event-card:hover {
+  transform: scale(1.05); /* Add hover effect */
+}
+
+/* Show More Button */
+.show-more-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.show-more-button:hover {
+  background-color: #0056b3;
+}
+
+/* Grid Layout for Events */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 50px; /* Adjust gap for closer spacing */
+  justify-items: center;
+  margin-bottom: 20px;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is above other content */
+}
+
+/* Modal Content */
+.modal-content {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.modal-content p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.close-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.close-button:hover {
+  background-color: #0056b3;
+}
+
+/* Fade-in Animation for Modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

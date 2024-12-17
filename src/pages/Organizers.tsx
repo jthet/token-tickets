@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import CreateTokenFormCard from "../components/CreateTokenFormCard.tsx"; // Modular Create Token Form
 import "../styles/Organizers.css";
 import MintTokenCard from "../components/MintTokenCard.tsx";
-import ViewEventsCard from "../components/ViewEventsCard.tsx";
+import ViewOrganizerEventsCard from "../components/ViewOrganizerEventsCard.tsx";
+
 
 const Organizers = () => {
   const [showCreateToken, setShowCreateToken] = useState(false);
@@ -71,7 +72,7 @@ const Organizers = () => {
       )}
       {showViewTokens && (
         <div className="placeholder-card">
-          <ViewEventsCard />
+          <ViewOrganizerEventsCard />
         </div>
       )}
     </div>

@@ -1,0 +1,81 @@
+/* Modal Overlay: Full-screen dark background */
+.transaction-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal appears above all other elements */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Content Box */
+.transaction-modal-content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%; /* Make it responsive */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: scaleIn 0.3s ease-in-out; /* Smooth pop-in animation */
+}
+
+/* Modal Header */
+.transaction-modal-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Modal Paragraphs */
+.transaction-modal-content p {
+  font-size: 1rem;
+  color: #555;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+/* Close Button */
+.transaction-close-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.transaction-close-button:hover {
+  background-color: #0056b3;
+}
+
+/* Fade-in Animation for Modal Overlay */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scale-in Animation for Modal Content */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

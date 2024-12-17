@@ -38,7 +38,12 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
     const fetchTokens = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/events/get-events`
+          `${process.env.REACT_APP_BACKEND_URL}/api/events/get-events`,
+          {
+            headers: {
+              "x-api-key": process.env.REACT_APP_API_KEY,
+            },
+          }
         );
         setTokens(response.data);
       } catch (err) {
@@ -92,7 +97,12 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
 
       // get supply key from backend database
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/events/get-event/${tokenId}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/events/get-event/${tokenId}`,
+        {
+          headers: {
+            "x-api-key": process.env.REACT_APP_API_KEY,
+          },
+        }
       );
       const { supplyKey } = response.data;
 
@@ -119,7 +129,12 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
 
       const result = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/api/events/update-serials/${tokenId}`,
-        payload
+        payload,
+        {
+          headers: {
+            "x-api-key": process.env.REACT_APP_API_KEY,
+          },
+        }
       );
 
       console.log('Payload: ', payload);

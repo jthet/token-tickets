@@ -29,7 +29,12 @@ const ViewEventsCard: React.FC = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/events/get-events-by-organizer/${organizerAccountId}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/events/get-events-by-organizer/${organizerAccountId}`,
+          {
+            headers: {
+              "x-api-key": process.env.REACT_APP_API_KEY,
+            },
+          }
         );
         setEvents(response.data);
       } catch (err: any) {

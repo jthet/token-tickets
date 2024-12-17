@@ -82,7 +82,12 @@ const CreateTokenFormCard: React.FC<TokenFormCardProps> = ({
       try {
         await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/api/events`,
-          eventDetails
+          eventDetails,
+          {
+            headers: {
+              "x-api-key": process.env.REACT_APP_API_KEY,
+            },
+          }
         );
         console.log("Event saved to db successfully!");
       } catch (err) {

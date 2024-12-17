@@ -1,17 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Marketplace.css";
+import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
+import { fetchUniqueEvents, EventData } from "../services/api/eventsService.ts";
+
+// Modular components
+import AllEvents from "../components/AllEvents.tsx";
+import UserTickets from "../components/UserTickets.tsx";
 
 const Marketplace: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<"allEvents" | "myTickets">(
     "allEvents"
   );
+  const [events, setEvents] = useState<EventData[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Dummy content for illustration
-  const renderContent = () => {
+  const navigate = useNavigate();
+
+  // Fetch Unique Events
+  const loadEvents = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const data = await fetchUniqueEvents();
+      setEvents(data);
+    } catch (err: any) {
+      setError(err.message || "An error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch events when "All Events" tab is selected
+  useEffect(() => {
     if (selectedTab === "allEvents") {
-      return <div className="tab-content">Here are all the events...</div>;
-    } else {
-      return <div className="tab-content">Here are your tickets...</div>;
+      loadEvents();
+    }
+  }, [selectedTab]);
+
+  const goToOrganizers = () => {
+    navigate("/organizers");
+  };
+
+  // Dynamic content rendering
+  const renderContent = () => {
+    switch (selectedTab) {
+      case "allEvents":
+        return <AllEvents events={events} loading={loading} error={error} />;
+      case "myTickets":
+        return <UserTickets />;
+      default:
+        return null;
     }
   };
 
@@ -25,6 +66,13 @@ const Marketplace: React.FC = () => {
         <p className="marketplace-subtitle">
           Browse events and manage your tickets seamlessly.
         </p>
+        <div className="d-flex justify-content-center gap-3 mt-4">
+          <Button
+            label="Event Organizer?"
+            variant="outline"
+            onClick={goToOrganizers}
+          />
+        </div>
       </section>
 
       {/* Tab Options */}
