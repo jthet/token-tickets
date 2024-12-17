@@ -1,8 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/About.css";
 import HederaLogo from "../assets/hederaLogo.png";
 
 const About = () => {
+
+  const navigate = useNavigate();
+
+  const goToGetStarted = () => {
+    navigate("/getStarted");
+  };
+  
   return (
     <div className="about-container">
       {/* Hero Section */}
@@ -68,7 +76,9 @@ const About = () => {
             event organizers and attendees alike. Be part of a transparent and
             secure future for ticketing.
           </p>
-          <button className="cta-button">Get Started</button>
+          <button className="cta-button" onClick={goToGetStarted}>
+            Get Started
+          </button>
         </div>
       </section>
       {/* GitHub and Hedera Section */}
@@ -79,7 +89,7 @@ const About = () => {
             href="https://github.com/jthet/token-tickets"
             target="_blank"
             rel="noopener noreferrer"
-            className="logo-button"
+            className="github-logo"
           >
             <img
               src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
@@ -95,7 +105,7 @@ const About = () => {
             rel="noopener noreferrer"
             className="logo-button"
           >
-            <img src={HederaLogo} alt="Hedera" className="logo"  />
+            <img src={HederaLogo} alt="Hedera" className="logo" />
           </a>
         </div>
       </section>

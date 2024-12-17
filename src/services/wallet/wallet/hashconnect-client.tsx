@@ -1,15 +1,11 @@
-// import {
-//   Box,
-//   Button,
-// } from "@mui/material";
 import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   getConnectedAccountIds,
   hc,
   hcInitPromise,
-} from "../../services/wallet/wallet/hashconnect.ts";
-import { actions, AppStore } from "../../store/index.ts";
+} from "./hashconnect.ts";
+import { actions } from "../../../store/index.ts";
 
 export const HashConnectClient = () => {
   const dispatch = useDispatch();
@@ -46,35 +42,3 @@ export const HashConnectClient = () => {
   });
   return null;
 };
-
-// export const HashConnectConnectButton = () => {
-//   const { isConnected, accountIds: connectedAccountIds } = useSelector(
-//     (state: AppStore) => state.hashconnect
-//   );
-
-//   return (
-//     <Box>
-//       <Button
-//         color={"blurple" as any}
-//         variant="contained"
-//         onClick={async () => {
-//           if (isConnected) {
-//             await hcInitPromise;
-//             if (isConnected) {
-//               if (getConnectedAccountIds().length > 0) {
-//                 hc.disconnect();
-//               }
-//             }
-//           } else {
-//             // open walletconnect modal
-//             hc.openPairingModal();
-//           }
-//         }}
-//       >
-//         {isConnected
-//           ? `Disconnect Account${connectedAccountIds.length > 1 ? "s" : ""}`
-//           : "Connect"}
-//       </Button>
-//     </Box>
-//   );
-// };

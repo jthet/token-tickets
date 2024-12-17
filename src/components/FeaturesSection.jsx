@@ -32,7 +32,7 @@ const FeaturesSection = () => {
           <FeatureCard
             iconClass="fas fa-check-circle"
             title="Transparency"
-            description="All tickets are securely issued on the blockchain."
+            description="All tickets are securely issued on Hedera's next-gen blockchain."
           />
           <FeatureCard
             iconClass="fas fa-shield-alt"
