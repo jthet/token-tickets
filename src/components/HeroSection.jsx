@@ -9,19 +9,17 @@ const HeroSection = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   const words = [
-    "Concert",
-    "Festival",
-    "Rodeo",
-    "Rave",
-    "Tailgate",
     "Basketball",
     "Broadway",
     "Carnival",
-    "Hockey",
-    "Film Festival",
-    "Formula 1",
     "Comedy Show",
+    "Concert",
+    "Formula 1",
+    "Hockey",
+    "Party",
+    "Rodeo",
     "Symphony",
+    "Tailgate",
     "Ticket", // Final word
   ];
 

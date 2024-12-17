@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import TokenFormCard from "../components/CreateTokenFormCard.tsx"; // Modular Create Token Form
 import "../styles/Marketplace.css";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 
 const Marketplace = () => {
+  const navigate = useNavigate();
+
   const [showCreateToken, setShowCreateToken] = useState(false);
   const [showMintTokens, setShowMintTokens] = useState(false);
   const [showViewTokens, setShowViewTokens] = useState(false);
@@ -25,6 +29,11 @@ const Marketplace = () => {
     setShowMintTokens(false);
   };
 
+  const goToOrganizersPage = () => {
+    console.log("Navigating to /organizers"); // Debug log
+    navigate("/organizers");
+  };
+
   return (
     <div className="marketplace-container">
       {/* Hero Section */}
@@ -35,17 +44,18 @@ const Marketplace = () => {
         <p className="marketplace-subtitle">
           Manage your tokens effortlessly with a modern, secure platform.
         </p>
+        {/* Event organizer button link*/}
+        <Button
+          label="Organizer?"
+          variant="outline"
+          onClick={goToOrganizersPage} // Navigate to About page
+        />
       </section>
 
       {/* Feature Options */}
       <section className="marketplace-options">
-        <div className="marketplace-option" onClick={openCreateToken}>
-          <h3>Create Event Tokens</h3>
-          <p>Create a unique NFT ticke collection for your upcoming event</p>
-        </div>
-
         <div className="marketplace-option" onClick={openMintTokens}>
-          <h3>Mint Event Tickets</h3>
+          <h3>View Your Tickets</h3>
           <p>Mint additional tickets for your existing events</p>
         </div>
 
@@ -54,15 +64,10 @@ const Marketplace = () => {
           <p>Explore and manage the events in your account.</p>
         </div>
       </section>
-
-      {/* Dynamic Pop-Up Cards */}
-      {showCreateToken && (
-        <TokenFormCard onClose={() => setShowCreateToken(false)} />
-      )}
       {showMintTokens && (
         <div className="placeholder-card">
-          <h2>Mint Tokens</h2>
-          <p>This is a placeholder for minting tokens. Coming soon!</p>
+          <h2>Your Tickets</h2>
+          <p>This is a placeholder for Your Tickets. Coming soon!</p>
           <button
             className="close-button"
             onClick={() => setShowMintTokens(false)}
@@ -73,7 +78,7 @@ const Marketplace = () => {
       )}
       {showViewTokens && (
         <div className="placeholder-card">
-          <h2>View Tokens</h2>
+          <h2>View Events</h2>
           <p>This is a placeholder for viewing tokens. Coming soon!</p>
           <button
             className="close-button"
