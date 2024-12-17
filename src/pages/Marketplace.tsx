@@ -1,37 +1,18 @@
 import React, { useState } from "react";
-import TokenFormCard from "../components/CreateTokenFormCard.tsx"; // Modular Create Token Form
 import "../styles/Marketplace.css";
-import { Link, useNavigate } from "react-router-dom";
-import Button from "../components/Button";
 
-const Marketplace = () => {
-  const navigate = useNavigate();
+const Marketplace: React.FC = () => {
+  const [selectedTab, setSelectedTab] = useState<"allEvents" | "myTickets">(
+    "allEvents"
+  );
 
-  const [showCreateToken, setShowCreateToken] = useState(false);
-  const [showMintTokens, setShowMintTokens] = useState(false);
-  const [showViewTokens, setShowViewTokens] = useState(false);
-
-  const openCreateToken = () => {
-    setShowCreateToken(true);
-    setShowMintTokens(false);
-    setShowViewTokens(false);
-  };
-
-  const openMintTokens = () => {
-    setShowMintTokens(true);
-    setShowCreateToken(false);
-    setShowViewTokens(false);
-  };
-
-  const openViewTokens = () => {
-    setShowViewTokens(true);
-    setShowCreateToken(false);
-    setShowMintTokens(false);
-  };
-
-  const goToOrganizersPage = () => {
-    console.log("Navigating to /organizers"); // Debug log
-    navigate("/organizers");
+  // Dummy content for illustration
+  const renderContent = () => {
+    if (selectedTab === "allEvents") {
+      return <div className="tab-content">Here are all the events...</div>;
+    } else {
+      return <div className="tab-content">Here are your tickets...</div>;
+    }
   };
 
   return (
@@ -42,52 +23,28 @@ const Marketplace = () => {
           Token <span className="highlight">Marketplace</span>
         </h1>
         <p className="marketplace-subtitle">
-          Manage your tokens effortlessly with a modern, secure platform.
+          Browse events and manage your tickets seamlessly.
         </p>
-        {/* Event organizer button link*/}
-        <Button
-          label="Organizer?"
-          variant="outline"
-          onClick={goToOrganizersPage} // Navigate to About page
-        />
       </section>
 
-      {/* Feature Options */}
-      <section className="marketplace-options">
-        <div className="marketplace-option" onClick={openMintTokens}>
-          <h3>View Your Tickets</h3>
-          <p>Mint additional tickets for your existing events</p>
-        </div>
+      {/* Tab Options */}
+      <div className="tab-container">
+        <span
+          className={`tab-option ${selectedTab === "allEvents" ? "active" : ""}`}
+          onClick={() => setSelectedTab("allEvents")}
+        >
+          All Events
+        </span>
+        <span
+          className={`tab-option ${selectedTab === "myTickets" ? "active" : ""}`}
+          onClick={() => setSelectedTab("myTickets")}
+        >
+          My Tickets
+        </span>
+      </div>
 
-        <div className="marketplace-option" onClick={openViewTokens}>
-          <h3>View Events</h3>
-          <p>Explore and manage the events in your account.</p>
-        </div>
-      </section>
-      {showMintTokens && (
-        <div className="placeholder-card">
-          <h2>Your Tickets</h2>
-          <p>This is a placeholder for Your Tickets. Coming soon!</p>
-          <button
-            className="close-button"
-            onClick={() => setShowMintTokens(false)}
-          >
-            Close
-          </button>
-        </div>
-      )}
-      {showViewTokens && (
-        <div className="placeholder-card">
-          <h2>View Events</h2>
-          <p>This is a placeholder for viewing tokens. Coming soon!</p>
-          <button
-            className="close-button"
-            onClick={() => setShowViewTokens(false)}
-          >
-            Close
-          </button>
-        </div>
-      )}
+      {/* Dynamic Content */}
+      <div className="content-container">{renderContent()}</div>
     </div>
   );
 };

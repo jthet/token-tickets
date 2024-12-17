@@ -21,6 +21,8 @@
   gap: 10px;
   white-space: nowrap;
   box-shadow: none !important;
+  margin-right: 20px;
+  padding-right: 20px; /* Add padding to the right to create space */
 }
 
 /* Logo */
@@ -32,6 +34,7 @@
   margin-left: 0px;
   padding-bottom: 0px;
   padding-bottom: 10px;
+  padding-right: 10px;
   background-color: transparent;
   box-shadow: none !important;
   outline: none !important;
@@ -48,9 +51,8 @@
 
 /* Logo Image */
 .logo-img {
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
+  height: 90px;
+  /* border-radius: 50%; */
   margin-right: 0px;
   box-shadow: none !important;
   transition: none; /* Remove all transitions */
@@ -154,11 +156,22 @@ nav {
 }
 
 .logo-img-inverted {
-  height: 90px;
-  width: 90px;
-  border-radius: 50%;
+  height: 55px;
+  /* border-radius: 50%; */
   margin-right: 10px;
   box-shadow: none !important;
   transition: none; /* Remove all transitions */
   filter: invert(1);
+}
+
+@media (max-width: 768px) {
+  .logo-container {
+    margin-right: 10px; /* Adjust margin for smaller screens */
+    padding-right: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .logo {
+    font-size: 20px; /* Adjust font size for smaller screens */
+    padding-right: 5px; /* Adjust padding for smaller screens */
+  }
 }

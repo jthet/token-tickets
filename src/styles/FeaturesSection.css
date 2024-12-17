@@ -1,5 +1,6 @@
 .features-section {
   background-color: #121212;
+  margin-top: 25px;
 }
 
 .features-container, .about-features-container {
@@ -11,6 +12,7 @@
   margin: 0 auto; /* Center the container itself */
   max-width: 1200px; /* Optional: prevent container from stretching too wide */
   padding: 20px; /* Add padding to avoid content touching edges */
+  margin-top: 0;
 }
 
 .feature-card {
