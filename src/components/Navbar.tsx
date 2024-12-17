@@ -50,9 +50,9 @@ const Navbar = () => {
         {/* Logo */}
         <div className="logo-container">
           <img
-            src="/path-to-your-logo.png" // Replace with your logo's path
+            src="/assets/tokenTicketsLogo.png"
             alt="Logo"
-            className="logo-img"
+            className="logo-img-inverted align-items-center"
           />
           <Link to="/" className="d-flex logo fw-bold align-items-center">
             Token Tickets

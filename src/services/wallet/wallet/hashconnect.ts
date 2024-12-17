@@ -3,12 +3,14 @@ import { HashConnect } from "hashconnect";
 
 const env = "testnet";
 const appMetadata = {
-    name: "Example dApp",
-    description: "An example HashConnect dApp",
-    icons: [window.location.origin + "/favicon.ico"],
+    name: "Token Tickets",
+    description: "A Decentralized Web3 Ticketing Marketplace",
+    icons: [window.location.origin + "/assets/tokenTicketsLogo.png"],
     url: window.location.origin,
 };
-const projectId = "bfa190dbe93fcf30377b932b31129d05";
+const projectId = process.env.REACT_APP_HASHCONNECT_PROJECT_ID || "";
+
+// console.log("Project ID:", projectId);
 
 export const hc = new HashConnect(
     LedgerId.fromString(env),

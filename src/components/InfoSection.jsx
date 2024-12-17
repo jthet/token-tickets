@@ -8,9 +8,9 @@ const InfoSection = () => {
         <div className="row align-items-center">
           {/* Left Side: Icon and Text */}
           <div className="col-md-6 text-center text-md-start">
-            <div className="icon-circle mb-4">
+            {/* <div className="icon-circle mb-4">
               <i className="fas fa-coins fa-3x"></i>
-            </div>
+            </div> */}
             <h3 className="info-title">Secure NFT-Based Event Ticketing</h3>
             <p className="info-text">
               Token Tickets is a secure, NFT-based event ticketing platform
@@ -20,11 +20,12 @@ const InfoSection = () => {
 
           {/* Right Side: Image */}
           <div className="col-md-6 text-center">
-            <div className="info-image-wrapper">
+            <div className="">
               <img
-                src="https://via.placeholder.com/500x300"
+                src="/assets/tokenTicketsLogo.png"
                 alt="Currency"
-                className="img-fluid rounded"
+                className="info-img-inverted"
+                width={200}
               />
             </div>
           </div>

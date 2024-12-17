@@ -15,8 +15,10 @@
     "axios": "^1.7.9",
     "binary-loader": "^0.0.1",
     "bootstrap": "^5.3.3",
+    "buffer": "^6.0.3",
     "expo": "^49.0.16",
     "hashconnect": "^3.0.13",
+    "mongodb": "^6.12.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
@@ -61,6 +63,7 @@
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "mongosh": "^2.3.6",
     "prettier": "^3.4.2",
     "source-map-loader": "^5.0.0"
   },

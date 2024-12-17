@@ -1,20 +1,20 @@
 .btn-purple {
   background-color: #9b59b6;
   color: white;
-  border: none;
+  border: 1px solid #fff;
 }
 
 .btn-purple:hover {
-  background-color: #6d3f8e;
+  background-color: #9b59b6;
   color: white;
 }
 
 .btn-outline-light {
-  border: 1px solid #fff;
+  border: 1px solid #ffffff3b;
   color: white;
 }
 
 .btn-outline-light:hover {
-  background-color: white;
+  background-color: #ffffff3b;
   color: black;
 }

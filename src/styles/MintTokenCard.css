@@ -1,0 +1,172 @@
+/* Overlay styling */
+.mint-token-card-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75); /* Dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Card container */
+.mint-token-card {
+  background-color: #1e1e1e;
+  color: #d3d3d3;
+  border-radius: 12px;
+  padding: 30px;
+  width: 450px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5);
+  font-family: "Arial", sans-serif;
+  line-height: 1.5;
+}
+
+/* Card Header */
+.mint-token-card h2 {
+  color: #9b59b6;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* Form Group */
+.mint-token-card div {
+  margin-bottom: 15px;
+}
+
+/* Labels */
+.mint-token-card label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #bdbdbd;
+}
+
+/* Input and Select Styling */
+.mint-token-card input,
+.mint-token-card select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #333;
+  color: #d3d3d3;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.mint-token-card input:focus,
+.mint-token-card select:focus {
+  border-color: #9b59b6;
+  outline: none;
+  box-shadow: 0 0 5px #9b59b6;
+}
+
+/* Add Row Button */
+.metadata-input-group button {
+  background-color: #9b59b6;
+  color: white;
+  border: none;
+  margin-top: 10px;
+  padding: 10px 15px;
+  margin-left: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.metadata-input-group button:hover {
+  background-color: #8e44ad;
+}
+
+/* Metadata Table */
+.metadata-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  color: #d3d3d3;
+}
+
+.metadata-table th,
+.metadata-table td {
+  padding: 8px;
+  border: 1px solid #444;
+  text-align: center;
+}
+
+.metadata-table th {
+  background-color: #2a2a3a;
+  font-size: 0.9rem;
+}
+
+.metadata-table td {
+  font-size: 0.9rem;
+}
+
+/* Actions */
+.mint-form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.close-button,
+.cta-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-button {
+  background-color: #555;
+  color: white;
+}
+
+.close-button:hover {
+  background-color: #777;
+}
+
+.cta-button {
+  background-color: #9b59b6;
+  color: white;
+}
+
+.cta-button:hover {
+  background-color: #8e44ad;
+}
+
+/* Error Message */
+.error-message {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Remove Button */
+.remove-button {
+  background-color: #ff4d501a; /* Red background for a "remove" action */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.remove-button:hover {
+  background-color: #e63946; /* Slightly darker red on hover */
+  transform: scale(1.05); /* Small scaling effect */
+}
+
+.remove-button:active {
+  background-color: #d62839; /* Even darker red on click */
+  box-shadow: none;
+}

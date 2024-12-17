@@ -10,6 +10,7 @@ import { executeTransaction, hc } from "../services/wallet/wallet/hashconnect.ts
 import { useSelector } from "react-redux";
 import "../styles/CreateTokenFormCard.css"; // Add specific styling
 import { AppStore } from "../store";
+import axios from "axios";
 
 interface TokenFormCardProps {
   connectedAccountIds: string[];
@@ -29,6 +30,7 @@ const CreateTokenFormCard: React.FC<TokenFormCardProps> = ({
   const [tokenName, setTokenName] = useState("");
   const [tokenSymbol, setTokenSymbol] = useState("");
   const [tokenMemo, setTokenMemo] = useState("");
+  const [maxSupply, setMaxSupply] = useState(1000);
 
   const handleCreateToken = async () => {
     try {
@@ -49,7 +51,7 @@ const CreateTokenFormCard: React.FC<TokenFormCardProps> = ({
         .setInitialSupply(0)
         .setTreasuryAccountId(fromAccountId)
         .setSupplyType(TokenSupplyType.Finite)
-        .setMaxSupply(500)
+        .setMaxSupply(maxSupply || 1000)
         .setSupplyKey(supplyKey)
         .freezeWithSigner(signer);
 
@@ -57,11 +59,46 @@ const CreateTokenFormCard: React.FC<TokenFormCardProps> = ({
         AccountId.fromString(fromAccountId),
         frozenTransaction
       );
+
       console.log("Transaction Result:", executeResult);
-      alert("Token Created Successfully!");
+      
+
+      // Save event to database
+      // Extract details from the transaction
+      const eventDetails = {
+        tokenId: executeResult.tokenId
+          ? executeResult.tokenId.toString()
+          : "Unknown",
+        supplyKey: supplyKey.toString(),
+        tokenName: tokenName || "Default Token Name",
+        tokenSymbol: tokenSymbol || "DEFAULT",
+        tokenMemo: tokenMemo || "",
+        maxSupply: maxSupply,
+        transactionStatus: executeResult.status.toString(),
+        organizerAccountId: fromAccountId,
+      };
+
+      // Send event details to the backend
+      try {
+        await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/api/events`,
+          eventDetails,
+          {
+            headers: {
+              "x-api-key": process.env.REACT_APP_API_KEY,
+            },
+          }
+        );
+        console.log("Event saved to db successfully!");
+      } catch (err) {
+        console.error("Failed to save the event in the database:", err);
+      }
+      alert("Token created successfully and event saved!");
+
+      onClose();
     } catch (err) {
-      console.error(err);
-      alert("Failed to Create Token. See console for details.");
+      console.error("Error creating token:", err);
+      alert("Failed to create token. See console for details.");
     }
   };
 
@@ -99,6 +136,17 @@ const CreateTokenFormCard: React.FC<TokenFormCardProps> = ({
               placeholder="Enter Token Symbol"
               value={tokenSymbol}
               onChange={(e) => setTokenSymbol(e.target.value)}
+            />
+          </div>
+
+          {/* Token max supply */}
+          <div>
+            <label>Max Supply:</label>
+            <input
+              type="text"
+              placeholder="Enter Token Symbol"
+              value={maxSupply}
+              onChange={(e) => setMaxSupply(Number(e.target.value))}
             />
           </div>
 

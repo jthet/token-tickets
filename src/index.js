@@ -7,7 +7,7 @@ import { configureStore } from "@reduxjs/toolkit"; // Import Redux Toolkit
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { store } from "./store/index.ts";
-import { HashConnectClient } from "./components/hashconnect/hashconnect-client.tsx";
+import { HashConnectClient } from "./services/wallet/wallet/hashconnect-client.tsx";
 
 
 // Create the root element

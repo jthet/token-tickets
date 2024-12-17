@@ -1,59 +1,31 @@
-import React, { useState, useEffect } from "react";
-import "../styles/Marketplace.css";
-import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
-import { fetchUniqueEvents, EventData } from "../services/api/eventsService.ts";
+import React, { useState } from "react";
+import CreateTokenFormCard from "../components/CreateTokenFormCard.tsx"; // Modular Create Token Form
+import "../styles/Organizers.css";
+import MintTokenCard from "../components/MintTokenCard.tsx";
+import ViewOrganizerEventsCard from "../components/ViewOrganizerEventsCard.tsx";
 
-// Modular components
-import AllEvents from "../components/AllEvents.tsx";
-import UserTickets from "../components/UserTickets.tsx";
 
-const Marketplace: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState<"allEvents" | "myTickets">(
-    "allEvents"
-  );
-  const [events, setEvents] = useState<EventData[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+const Organizers = () => {
+  const [showCreateToken, setShowCreateToken] = useState(false);
+  const [showMintTokens, setShowMintTokens] = useState(false);
+  const [showViewTokens, setShowViewTokens] = useState(false);
 
-  const navigate = useNavigate();
-
-  // Fetch Unique Events
-  const loadEvents = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const data = await fetchUniqueEvents();
-      setEvents(data);
-    } catch (err: any) {
-      setError(err.message || "An error occurred.");
-    } finally {
-      setLoading(false);
-    }
+  const openCreateToken = () => {
+    setShowCreateToken(true);
+    setShowMintTokens(false);
+    setShowViewTokens(false);
   };
 
-  // Fetch events when "All Events" tab is selected
-  useEffect(() => {
-    if (selectedTab === "allEvents") {
-      loadEvents();
-    }
-  }, [selectedTab]);
-
-  const goToOrganizers = () => {
-    navigate("/organizers");
+  const openMintTokens = () => {
+    setShowMintTokens(true);
+    setShowCreateToken(false);
+    setShowViewTokens(false);
   };
 
-  // Dynamic content rendering
-  const renderContent = () => {
-    switch (selectedTab) {
-      case "allEvents":
-        return <AllEvents events={events} loading={loading} error={error} />;
-      case "myTickets":
-        return <UserTickets />;
-      default:
-        return null;
-    }
+  const openViewTokens = () => {
+    setShowViewTokens(true);
+    setShowCreateToken(false);
+    setShowMintTokens(false);
   };
 
   return (
@@ -61,43 +33,53 @@ const Marketplace: React.FC = () => {
       {/* Hero Section */}
       <section className="marketplace-hero">
         <h1 className="marketplace-title">
-          Token <span className="highlight">Marketplace</span>
+          Event <span className="highlight">Organizers</span>
         </h1>
         <p className="marketplace-subtitle">
-          Browse events and manage your tickets seamlessly.
+          Create, mint, and manage event tokens with ease.
         </p>
-        <div className="d-flex justify-content-center gap-3 mt-4">
-          <Button
-            label="Event Organizer?"
-            variant="outline"
-            onClick={goToOrganizers}
-          />
+      </section>
+
+      {/* Feature Options */}
+      <section className="marketplace-options">
+        <div className="marketplace-option" onClick={openCreateToken}>
+          <h3>Create Event Tokens</h3>
+          <p>Create a unique NFT ticke collection for your upcoming event</p>
+        </div>
+
+        <div className="marketplace-option" onClick={openMintTokens}>
+          <h3>Mint Event Tickets</h3>
+          <p>Mint additional tickets for your existing events</p>
+        </div>
+
+        <div className="marketplace-option" onClick={openViewTokens}>
+          <h3>View Events</h3>
+          <p>Explore and manage the events in your account.</p>
         </div>
       </section>
 
-      {/* Tab Options */}
-      <div className="tab-container">
-        <span
-          className={`tab-option ${selectedTab === "allEvents" ? "active" : ""}`}
-          onClick={() => setSelectedTab("allEvents")}
-        >
-          All Events
-        </span>
-        <span
-          className={`tab-option ${selectedTab === "myTickets" ? "active" : ""}`}
-          onClick={() => setSelectedTab("myTickets")}
-        >
-          My Tickets
-        </span>
-      </div>
-
-      {/* Dynamic Content */}
-      <div className="content-container">{renderContent()}</div>
+      {/* Dynamic Pop-Up Cards */}
+      {showCreateToken && (
+        <CreateTokenFormCard
+          onClose={() => setShowCreateToken(false)}
+          connectedAccountIds={[]}
+        /> // Recently added "connectedAccountIds" prop, might break
+      )}
+      {showMintTokens && (
+        <div className="placeholder-card">
+          <MintTokenCard onClose={() => setShowMintTokens(false)} />
+        </div>
+      )}
+      {showViewTokens && (
+        <div className="placeholder-card">
+          <ViewOrganizerEventsCard />
+        </div>
+      )}
     </div>
   );
 };
 
-export default Marketplace;
+export default Organizers;
 
 // Examples for various transactions, signing, freezing combinations
 // {
