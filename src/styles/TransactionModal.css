@@ -5,29 +5,29 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
+  background: rgba(0, 0, 0, 0.85); /* Slightly less transparent dark background */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure modal appears above all other elements */
+  z-index: 1000;
   animation: fadeIn 0.3s ease-in-out;
 }
 
 /* Modal Content Box */
 .transaction-modal-content {
-  background-color: #ffffff;
+  background-color: #f9f9f9; /* Softer white background */
   border-radius: 8px;
   width: 400px;
-  max-width: 90%; /* Make it responsive */
+  max-width: 90%;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  animation: scaleIn 0.3s ease-in-out; /* Smooth pop-in animation */
+  animation: scaleIn 0.3s ease-in-out;
 }
 
 /* Modal Header */
 .transaction-modal-content h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-bottom: 15px;
   color: #333;
 }
@@ -40,22 +40,44 @@
   line-height: 1.5;
 }
 
+/* Modal Actions Container */
+.transaction-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
 /* Close Button */
 .transaction-close-button {
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #ccc; /* Original gray color */
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 15px;
   transition: background-color 0.3s ease;
 }
 
 .transaction-close-button:hover {
-  background-color: #0056b3;
+  background-color: #aaa; /* Slightly darker gray on hover */
+}
+
+/* Buy Button */
+.transaction-buy-button {
+  background-color: #9b59b6; /* Purple base color */
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Match size of Close button */
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.transaction-buy-button:hover {
+  background-color: #8e44ad; /* Darker purple on hover */
 }
 
 /* Fade-in Animation for Modal Overlay */
