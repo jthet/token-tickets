@@ -7,7 +7,6 @@ import {
 } from "@hashgraph/sdk";
 import {
   executeTransaction,
-  signTransaction,
   hc,
 } from "../services/wallet/wallet/hashconnect.ts";
 import axios from "axios";
@@ -29,8 +28,11 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
   const [tokens, setTokens] = useState<
     { tokenId: string; tokenName: string }[]
   >([]);
-  const [metadata, setMetadata] = useState<string[]>([]);
+  const [metadataEntries, setMetadataEntries] = useState<
+    { metadata: string; price: number }[]
+  >([]);
   const [newMetadata, setNewMetadata] = useState("");
+  const [newPrice, setNewPrice] = useState<number | null>(null); // Use null to represent no initial price
   const [maxTransactionFee, setMaxTransactionFee] = useState<number>(10);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -68,34 +70,40 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
       setErrorMessage("Invalid IPFS URL. Format: ipfs://CID/metadata.json");
       return;
     }
-    if (metadata.length >= 10) {
+    if (metadataEntries.length >= 10) {
       setErrorMessage("You can only mint up to 10 NFTs at a time.");
       return;
     }
+    if (newPrice === null || newPrice <= 0) {
+      setErrorMessage("Price must be a positive number.");
+      return;
+    }
 
-    setMetadata((prev) => [...prev, newMetadata]);
+    setMetadataEntries((prev) => [
+      ...prev,
+      { metadata: newMetadata, price: newPrice },
+    ]);
     setNewMetadata("");
     setErrorMessage("");
   };
 
   const handleRemoveMetadata = (index: number) => {
-    setMetadata((prev) => prev.filter((_, i) => i !== index));
+    setMetadataEntries((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleMintTokens = async () => {
     try {
-      if (!tokenId || metadata.length === 0) {
+      if (!tokenId || metadataEntries.length === 0) {
         alert("Please select a Token ID and add metadata entries.");
         return;
       }
+
       const fromAccountId = connectedAccountIds[0];
       if (!fromAccountId) {
         alert("No connected account found.");
         return;
       }
 
-
-      // get supply key from backend database
       const response = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/events/get-event/${tokenId}`,
         {
@@ -106,7 +114,7 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
       );
       const { supplyKey } = response.data;
 
-      const CID = metadata.map((item) => Buffer.from(item));
+      const CID = metadataEntries.map((entry) => Buffer.from(entry.metadata));
       const signer = hc.getSigner(AccountId.fromString(fromAccountId));
 
       const mintTx = await new TokenMintTransaction()
@@ -116,32 +124,39 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
         .freezeWithSigner(signer);
 
       const mintTxSign = await mintTx.sign(PrivateKey.fromStringDer(supplyKey));
-
-      const exTxn = await executeTransaction(AccountId.fromString(fromAccountId), mintTxSign);
+      const exTxn = await executeTransaction(
+        AccountId.fromString(fromAccountId),
+        mintTxSign
+      );
 
       console.log("Tokens minted successfully!", exTxn);
 
       const serials = exTxn.serials.map((serial) => serial.toString());
-      
-      const payload = {
-        serials: serials,
-      };
 
-      const result = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/events/update-serials/${tokenId}`,
-        payload,
-        {
-          headers: {
-            "x-api-key": process.env.REACT_APP_API_KEY,
+      const ticketPromises = serials.map((serial, index) =>
+        axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/api/tickets`,
+          {
+            tokenId,
+            tokenName: response.data.tokenName,
+            tokenSymbol: response.data.tokenSymbol,
+            serialNumber: serial,
+            price: metadataEntries[index].price,
+            ownerAccount: fromAccountId,
           },
-        }
+          {
+            headers: {
+              "x-api-key": process.env.REACT_APP_API_KEY,
+            },
+          }
+        )
       );
 
-      console.log('Payload: ', payload);
-      console.log("Serials updated in database: ", result);
+      await Promise.all(ticketPromises);
 
-      
-      setMetadata([]);
+      console.log("Tickets created successfully!");
+
+      setMetadataEntries([]);
       onClose();
     } catch (err: any) {
       console.error("Error minting tokens:", err.message || err);
@@ -169,7 +184,7 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
 
         {/* Metadata Input */}
         <div>
-          <label>Metadata (IPFS URL):</label>
+          <label>Metadata (IPFS URL) and Price (HBAR):</label>
           <div className="metadata-input-group">
             <input
               type="text"
@@ -177,13 +192,20 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
               value={newMetadata}
               onChange={(e) => setNewMetadata(e.target.value)}
             />
+            <input
+              type="number"
+              placeholder="Price (HBAR)"
+              value={newPrice !== null ? newPrice.toString() : ""}
+              onChange={(e) => setNewPrice(Number(e.target.value))}
+              style={{ width: "80px", marginLeft: "10px" }}
+            />
             <button onClick={handleAddMetadata}>Add Row</button>
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
 
         {/* Metadata Table */}
-        {metadata.length > 0 && (
+        {metadataEntries.length > 0 && (
           <div>
             <h4>Metadata Entries:</h4>
             <table className="metadata-table">
@@ -191,18 +213,25 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
                 <tr>
                   <th>#</th>
                   <th>Metadata</th>
+                  <th>Price (HBAR)</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {metadata.map((item, index) => (
+                {metadataEntries.map((entry, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>
-                      {item.length > 20 ? `${item.substring(0, 20)}...` : item}
+                      {entry.metadata.length > 20
+                        ? `${entry.metadata.substring(0, 20)}...`
+                        : entry.metadata}
                     </td>
+                    <td>{entry.price}</td>
                     <td>
-                      <button className="remove-button" onClick={() => handleRemoveMetadata(index)}>
+                      <button
+                        className="remove-button"
+                        onClick={() => handleRemoveMetadata(index)}
+                      >
                         Remove
                       </button>
                     </td>
