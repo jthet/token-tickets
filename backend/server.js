@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const eventRoutes = require("./routes/event");
+const ticketRoutes = require("./routes/ticket"); // Importing tickets routes
 const validateApiKey = require("./middleware/apiKeyMiddleware");
 
 //  env
@@ -15,10 +16,11 @@ connectDB();
 
 // Middleware
 app.use(cors());
-app.use(express.json()); 
-app.use("/api/events", validateApiKey, eventRoutes); // checks if they have my api key to interact with API
- 
-// catch all for 404
+app.use(express.json());
+app.use("/api/events", validateApiKey, eventRoutes); // Events API routes with API key validation
+app.use("/api/tickets", validateApiKey, ticketRoutes); // Tickets API routes with API key validation
+
+// Catch-all for 404
 app.use((req, res, next) => {
   res.status(404).json({ error: "Route not found" });
 });
