@@ -12,6 +12,7 @@ router.post("/", async (req, res) => {
       serialNumber,
       price,
       ownerAccount,
+      // Presigned transaction will be signed by the seller
     } = req.body;
 
     const newTicket = new Ticket({
@@ -21,6 +22,7 @@ router.post("/", async (req, res) => {
       serialNumber,
       price,
       ownerAccount,
+      // Presigned transaction will be signed by the seller
     });
 
     await newTicket.save();

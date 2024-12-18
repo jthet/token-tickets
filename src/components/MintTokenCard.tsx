@@ -4,6 +4,7 @@ import {
   PrivateKey,
   TokenMintTransaction,
   Hbar,
+  AccountAllowanceApproveTransaction,
 } from "@hashgraph/sdk";
 import {
   executeTransaction,
@@ -155,6 +156,33 @@ const MintTokenCard: React.FC<MintTokenCardProps> = ({ onClose }) => {
       await Promise.all(ticketPromises);
 
       console.log("Tickets created successfully!");
+
+      console.log("Initiaiting allowance approval...");
+
+      const tokenTicketsAccountId = process.env.REACT_APP_TOKEN_TICKETS_ACCOUNT_ID;
+
+      if (!tokenTicketsAccountId) {
+        throw new Error("Token Tickets Account ID is not defined.");
+      }
+
+      const allowanceTx = await new AccountAllowanceApproveTransaction()
+        .approveTokenNftAllowanceAllSerials(
+          tokenId,
+          AccountId.fromString(fromAccountId),
+          AccountId.fromString(tokenTicketsAccountId)
+        )
+        .freezeWithSigner(signer);
+
+      const allowanceTxSign = await allowanceTx.sign(
+        PrivateKey.fromStringDer(supplyKey)
+      );
+      const allowanceApproveNftRx = await executeTransaction(
+        AccountId.fromString(fromAccountId),
+        allowanceTxSign
+      );
+      console.log(`- Allowance approval status: ${allowanceApproveNftRx.status}`);
+    
+      console.log(allowanceApproveNftRx);
 
       setMetadataEntries([]);
       onClose();

@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-
-// This script makes a new account and injects database with 1 event and 10 tickets
 const {
   Client,
   PrivateKey,
@@ -10,6 +8,9 @@ const {
   TokenCreateTransaction,
   TokenType,
   TokenMintTransaction,
+  TransferTransaction,
+  NftId,
+  AccountAllowanceApproveTransaction,
 } = require("@hashgraph/sdk");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -36,14 +37,12 @@ const environmentSetup = async () => {
   await connectDB();
 
   //////////////////////////////
-  // change token symbol here //
+  // change token name/symbol //
   //////////////////////////////
 
-  const token_name = "Art Expo 2025";
-  const token_symbol = "ARTEXPO";
+  const token_name = "New York Trip";
+  const token_symbol = "NYC2024";
 
-  //////////////////////////////
-  // change token symbol here //
   //////////////////////////////
 
   const myAccountId = process.env.OPERATOR_ACCOUNT_ID;
@@ -76,15 +75,28 @@ const environmentSetup = async () => {
     "The new account public key is: " + newAccountPublicKey.toString()
   );
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Token Tickets User info
+  const tokenTicketsAccountId = process.env.REACT_APP_TOKEN_TICKETS_ACCOUNT_ID;
+  const tokenTicketsPrivateKey =
+    process.env.REACT_APP_TOKEN_TICKETS_PRIVATE_KEY;
+  const tokenTicketsPublicKey = process.env.REACT_APP_TOKEN_TICKETS_PUBLIC_KEY;
+  console.log("Token Tickets Account ID: " + tokenTicketsAccountId);
+  console.log("Token Tickets Private Key: " + tokenTicketsPrivateKey);
+  console.log("Token Tickets Public Key: " + tokenTicketsPublicKey);
+
+  ///////////////////////////////////////////////////////////////////////////
+
   const newClient = Client.forTestnet();
   newClient.setOperator(newAccountId, newAccountPrivateKey);
 
   const supplyKey = PrivateKey.generate();
   console.log("Supply Key: " + supplyKey.toString());
 
+  // Create token
   const tokenCreateTx = await new TokenCreateTransaction()
-    .setTokenName("Art Expo 2025")
-    .setTokenSymbol("ARTEXPO")
+    .setTokenName(token_name)
+    .setTokenSymbol(token_symbol)
     .setTokenType(TokenType.NonFungibleUnique)
     .setDecimals(0)
     .setInitialSupply(0)
@@ -99,7 +111,7 @@ const environmentSetup = async () => {
 
   console.log("Token ID: " + tokenId);
 
-  // mint 10 nfts
+  // Mint 10 NFTs and presign transactions
   console.log("Minting 10 tokens...");
   const serialNumbers = [];
 
@@ -114,27 +126,57 @@ const environmentSetup = async () => {
     const tokenMintSubmit = await tokenMintTx.execute(newClient);
     const tokenMintRx = await tokenMintSubmit.getReceipt(newClient);
     const serialNumber = tokenMintRx.serials[0].toString();
-
     serialNumbers.push(Number(serialNumber));
+
     console.log(`Minted Token #${i} with Serial Number: ${serialNumber}`);
-
-    const newTicket = new Ticket({
-      tokenId: tokenId.toString(),
-      tokenName: token_name,
-      tokenSymbol: token_symbol,
-      serialNumber: Number(serialNumber),
-      price: 100 + i, // Example price in HBAR
-      ownerAccount: newAccountId.toString(),
-    });
-
-    await newTicket.save();
-    console.log(`Ticket with Serial #${serialNumber} saved to database.`);
   }
+
+  ///////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////
+  console.log(`\nSTEP 2 ===================================\n`);
+  console.log(`- Treasury approving NFT allowance for Token Tickets...\n`);
+
+  async function nftAllowanceFcn(tId, owner, spender, treasuryKey, client) {
+    const allowanceTx = new AccountAllowanceApproveTransaction()
+      .approveTokenNftAllowanceAllSerials(tId, owner, spender) // Can approve all serials under a NFT collection
+      .freezeWith(client); // Freeze the transaction first
+    const allowanceSign = await allowanceTx.sign(treasuryKey); // Sign with treasury key
+    const allowanceSubmit = await allowanceSign.execute(client); // Submit the allowance transaction
+    const allowanceRx = await allowanceSubmit.getReceipt(client); // Get the receipt
+
+    return allowanceRx; // Return the receipt of the approval transaction
+  }
+
+  console.log(`- Token ID: ${tokenId}`);
+  console.log(`- Owner Account ID: ${newAccountId}`);
+  console.log(`- Spender Account ID: ${tokenTicketsAccountId}`);
+  console.log(`- Treasury Key: ${supplyKey}`);
+
+  // Approve the allowance for the Token Tickets account to manage all serials
+  const allowanceApproveNftRx = await nftAllowanceFcn(
+    tokenId,
+    newAccountId, // Owner account
+    tokenTicketsAccountId, // Spender account (Token Tickets account)
+    supplyKey, // Supply key (for signing the transaction)
+    newClient
+  );
+
+  console.log("Receipt:", allowanceApproveNftRx);
+
+  console.log(
+    `Account ${tokenTicketsAccountId} given allowance for ${tokenId}`
+  );
+
+  console.log(`- Allowance approval status: ${allowanceApproveNftRx.status}`);
+
+  // Save Event to MongoDB
   const newEvent = new Event({
     tokenId: tokenId.toString(),
     supplyKey: supplyKey.toString(),
     tokenName: token_name,
     tokenSymbol: token_symbol,
+    tokenMemo: "Some memo", // Customize as necessary
     maxSupply: 10,
     transactionStatus: "SUCCESS",
     serialNumbers: serialNumbers,
@@ -144,7 +186,20 @@ const environmentSetup = async () => {
   await newEvent.save();
   console.log("Event saved to database successfully.");
 
-  client.close();
+  // Save Tickets to MongoDB
+  for (const serialNumber of serialNumbers) {
+    const newTicket = new Ticket({
+      tokenId: tokenId.toString(),
+      tokenName: token_name,
+      tokenSymbol: token_symbol,
+      serialNumber: serialNumber,
+      price: serialNumber, // Adjust price as necessary
+      ownerAccount: newAccountId.toString(),
+    });
+
+    await newTicket.save();
+    console.log(`Ticket #${serialNumber} saved to database.`);
+  }
 };
 
 environmentSetup().catch((error) => console.error("Error:", error));

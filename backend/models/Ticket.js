@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const TicketSchema = new mongoose.Schema({
-  tokenId: { type: String, required: true }, 
-  tokenName: { type: String, required: true }, 
+  tokenId: { type: String, required: true },
+  tokenName: { type: String, required: true },
   tokenSymbol: { type: String, required: true },
-  serialNumber: { type: Number, required: true }, 
+  serialNumber: { type: Number, required: true },
   price: { type: Number, required: true },
   ownerAccount: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },

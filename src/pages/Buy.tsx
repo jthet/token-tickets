@@ -16,6 +16,7 @@ interface EventData {
   serialNumbers?: number[];
   organizerAccountId?: string;
   supplyKey?: string; // Add supplyKey here
+
 }
 
 interface Ticket {
@@ -111,9 +112,9 @@ const Buy: React.FC = () => {
         serialNumber,
         fromAccountId,
         price,
-        fullEventInfo.supplyKey,
         ownerAccount
       );
+
       console.log("Transaction Result:", result);
       alert("Ticket purchased successfully!");
     } catch (err: any) {
