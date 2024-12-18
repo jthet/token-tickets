@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom"; // Import BrowserRouter
 import { Provider } from "react-redux"; // Import Redux Provider
-import { configureStore } from "@reduxjs/toolkit"; // Import Redux Toolkit
+// import { configureStore } from "@reduxjs/toolkit"; // Import Redux Toolkit
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { store } from "./store/index.ts";
