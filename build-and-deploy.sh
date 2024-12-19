@@ -9,6 +9,7 @@ cd $PROJECT_DIR || { echo "Failed to change directory to $PROJECT_DIR"; exit 1; 
 
 echo "Starting deployment: $(date)" >> $LOG_FILE
 git pull --rebase origin main || { echo "Git pull failed"; exit 1; }
+chmod u+x build-and-deploy.sh || { echo "Failed to make script executable"; exit 1; }
 npm install || { echo "npm install failed"; exit 1; }
 npm run build || { echo "Build failed"; exit 1; }
 cp -r $BUILD_DIR/* $NGINX_DIR/ || { echo "Failed to copy build files to Nginx"; exit 1; }
