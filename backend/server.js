@@ -44,8 +44,8 @@ app.use((err, req, res, next) => {
 if (process.env.NODE_ENV === "production") {
   const https = require("https");
   const fs = require("fs");
-
-  // SSL Certificate (replace with actual paths)
+  
+  
   const privateKey = fs.readFileSync(
     "/etc/letsencrypt/live/tokentickets.tech/privkey.pem",
     "utf8"

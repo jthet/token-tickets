@@ -40,8 +40,9 @@ const environmentSetup = async () => {
   // change token name/symbol //
   //////////////////////////////
 
-  const token_name = "New York Trip";
-  const token_symbol = "NYC2024";
+  const token_name = "VIP F1 COTA - Austin, Texas";
+  const token_symbol = "F1-COTA-VIP";
+  const memo = "VIP Ticket for Formula 1 at Circuit of the Americas";
 
   //////////////////////////////
 
@@ -176,7 +177,7 @@ const environmentSetup = async () => {
     supplyKey: supplyKey.toString(),
     tokenName: token_name,
     tokenSymbol: token_symbol,
-    tokenMemo: "Some memo", // Customize as necessary
+    tokenMemo: memo, // Customize as necessary
     maxSupply: 10,
     transactionStatus: "SUCCESS",
     serialNumbers: serialNumbers,
