@@ -40,6 +40,9 @@
 
 Token Tickets is a decentralized event ticketing platform that leverages Hedera’s Hashgraph Token Service to issue tickets as NFTs. These NFTs are transferable and provide transparent and trustless ticket authentication and ownership, reducing the risk of counterfeit tickets, lowering ticketing fees, resolving transactions quickly.
 
+Learn more about it at the [About Page](https://tokentickets.tech/about), or check it out at the [https://tokentickets.tech](https://tokentickets.tech) website.
+
+
 
 ---
 
@@ -633,12 +636,45 @@ Install token-tickets using one of the following methods:
 ❯ npm install
 ```
 
+3. Set up environment variables
+
+Create a `.env` file and add the following lines. If you are running the app without the backend database, you can just include the hashconnect project ID for wallet connectivity and functionality. You can get a project ID [here](https://cloud.reown.com). 
+```
+# React env variables
+REACT_APP_HASHCONNECT_PROJECT_ID=Your
+
+# Database
+REACT_APP_BACKEND_URL=http://localhost:5000
+REACT_APP_API_KEY=example123
+
+```
+If you want to run the backend, you must create a `backend/.env` file with the following:
+
+```
+MONGODB_URI=mongodb+srv://<user>:<password>@<hostname>
+PORT=5000
+
+API_KEY=example123
+
+# for testing routes and DB injecting:
+# REACT_APP_BACKEND_URL=https://your-backend-domain.com
+
+# dev user
+OPERATOR_ACCOUNT_ID=0.0.5196091
+OPERATOR_ACCOUNT_PRIVATE_KEY_DER=3030020100300706052b8104000a042204208f36c8f642b01a139985bfbaf2ed1ef4ddf96caa039d5a851f30e75f9aca28d7
+
+# TOKEN_TICKETS_USER
+REACT_APP_TOKEN_TICKETS_ACCOUNT_ID=0.0.5287106
+REACT_APP_TOKEN_TICKETS_PRIVATE_KEY=302e020100300506032b6570042204208affcab4157057fb38df37a4c5e563c0a53a583b7b4125dda732c5dee8e03de9
+REACT_APP_TOKEN_TICKETS_PUBLIC_KEY=302a300506032b6570032100296a7e8c24aa34e172281326430a9dd9a303086408145cc65ee6cf8c984feed0
+
+```
 
 
 
 ###  Usage
 Run token-tickets using the following command:
-**Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
+
 
 ```sh
 ❯ npm start
@@ -647,7 +683,7 @@ Run token-tickets using the following command:
 
 ###  Testing
 Run the test suite using the following command:
-**Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
+
 
 ```sh
 ❯ npm test
@@ -657,7 +693,6 @@ Run the test suite using the following command:
 ##  Contributing
 
 - **🐛 [Report Issues](https://github.com/jthet/token-tickets/issues)**: Submit bugs found or log feature requests for the `token-tickets` project.
-- **💡 [Submit Pull Requests](https://github.com/jthet/token-tickets/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
 
 <details closed>
 <summary>Contributing Guidelines</summary>
