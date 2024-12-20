@@ -1,8 +1,8 @@
 <div align="left" style="position: relative;">
 <img src="https://github.com/jthet/token-tickets/blob/main/public/assets/tokenTicketsLogo-inverted.png?raw=true" align="right" width="8%" style="margin: 20px 20ox 20px 20px;">
-<h1>TOKEN-TICKETS</h1>
+<h1>Token Tickets</h1>
 <p align="left">
-	<em>Token-Tickets: Unlocking Experiences with Every Transaction!</em>
+	<em>Token Tickets: A Web3 Ticketing Platform</em>
 </p>
 <p align="left">
 	<img src="https://img.shields.io/github/license/jthet/token-tickets?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
@@ -20,19 +20,13 @@
 
 ##  Table of Contents
 
-1. [ Overview](#-overview)
-2. [ Features](#-features)
-3. [ Project Structure](#-project-structure)
-  3.1. [ Project Index](#-project-index)
-4. [ Getting Started](#-getting-started)
-  4.1. [ Prerequisites](#-prerequisites)
-  4.2. [ Installation](#-installation)
-  4.3. [ Usage](#-usage)
-  4.4. [ Testing](#-testing)
-5. [ Project Roadmap](#-project-roadmap)
-6. [ Contributing](#-contributing)
-7. [ License](#-license)
-8. [ Acknowledgments](#-acknowledgments)
+1. [Overview](#overview)
+2. [Tech Stack](#tech-stack)
+3. [Project Structure](#project-structure)
+4. [ Getting Started](#getting-started)
+6. [ Contributing](#contributing)
+7. [ License](#license)
+8. [ Acknowledgments](#acknowledgments)
 
 ---
 
@@ -41,7 +35,6 @@
 Token Tickets is a decentralized event ticketing platform that leverages Hedera’s Hashgraph Token Service to issue tickets as NFTs. These NFTs are transferable and provide transparent and trustless ticket authentication and ownership, reducing the risk of counterfeit tickets, lowering ticketing fees, resolving transactions quickly.
 
 Learn more about it at the [About Page](https://tokentickets.tech/about), or check it out at the [https://tokentickets.tech](https://tokentickets.tech) website.
-
 
 
 ---
@@ -108,29 +101,6 @@ Learn more about it at the [About Page](https://tokentickets.tech/about), or che
 ###  Project Index
 <details open>
 	<summary><b><code>TOKEN-TICKETS/</code></b></summary>
-	<details> <!-- __root__ Submodule -->
-		<summary><b>__root__</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/package-lock.json'>package-lock.json</a></b></td>
-				<td>- The `package-lock.json` file within the "ticket-tokens" project serves a crucial role in managing and maintaining the project's dependencies<br>- This file ensures that the exact versions of the libraries and packages used during development are recorded and consistently used across all environments, from development to production<br>- This is essential for the project's stability and reliability, preventing discrepancies between environments that could lead to unexpected behaviors or bugs.
-
-The dependencies listed, such as `@emotion/react`, `@emotion/styled`, `@hashgraph/sdk`, `@mui/material`, `@mui/system`, and `@reduxjs/toolkit`, indicate that the project is likely a web application utilizing a modern React framework with a focus on styled components and state management<br>- The inclusion of `@hashgraph/sdk` suggests that the application interacts with the Hedera Hashgraph network, which is a public ledger that might be used here for handling secure, high-performance transactions or data interactions.
-
-Overall, the `package-lock.json` file is pivotal in ensuring that the project's dependency tree is accurately reproduced whenever the project is installed or deployed, thereby supporting the overall codebase architecture's integrity and functionality.</td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/package.json'>package.json</a></b></td>
-				<td>- Defines the configuration and dependencies for the "ticket-tokens" project, setting up the environment for a React-based application integrated with blockchain technology via Hashgraph SDK<br>- It includes scripts for development tasks such as starting, building, testing, and linting the application, ensuring code quality and consistency.</td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/webpack.config.js'>webpack.config.js</a></b></td>
-				<td>- Webpack.config.js configures the project's module bundler to preprocess JavaScript files using a source-map-loader<br>- It specifically targets JS files for pre-processing, excluding any from node_modules, enhancing debugging capabilities by ensuring source maps are correctly handled during the build process<br>- This setup optimizes development workflow and error tracking within the application's architecture.</td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
 	<details> <!-- src Submodule -->
 		<summary><b>src</b></summary>
 		<blockquote>
@@ -146,93 +116,11 @@ Overall, the `package-lock.json` file is pivotal in ensuring that the project's 
 			</table>
 			<details>
 				<summary><b>styles</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/AllEvents.css'>AllEvents.css</a></b></td>
-						<td>- Provides styling for various event display components within the application, including a horizontally scrolling event card section, a static event grid, and modal overlays for detailed event information<br>- It enhances user interaction through animations, hover effects, and responsive design elements, ensuring a visually appealing and dynamic presentation of events.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/About.css'>About.css</a></b></td>
-						<td>- Provides a comprehensive CSS styling for the About page, enhancing visual elements such as background, text alignment, and color schemes across various sections including the hero, introduction, features, call-to-action, and GitHub integration<br>- It ensures a consistent and engaging user interface with attention to typography, spacing, and interactive elements.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/MintTokenCard.css'>MintTokenCard.css</a></b></td>
-						<td>- Provides comprehensive CSS styling for a user interface component, specifically a card overlay used for minting tokens<br>- It includes styles for positioning, background, text, input fields, buttons, and interactive elements like hover effects<br>- The design ensures a visually appealing and functional user experience, facilitating user interactions for token minting processes within the application.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/Marketplace.css'>Marketplace.css</a></b></td>
-						<td>- Defines the visual style and layout for the Marketplace section of the application, focusing on aesthetics such as background colors, text styles, and tab functionality<br>- It enhances user interface elements like containers, titles, subtitles, and content blocks, ensuring a cohesive and visually appealing user experience across the marketplace interface.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/Buy.css'>Buy.css</a></b></td>
-						<td>- Defines the visual styling for the "Buy" page within the application, setting up a dark-themed user interface with specific styles for headers, cards, and ticket listings<br>- It enhances user interaction by styling hover effects on clickable elements like tickets and buttons, ensuring a visually appealing and functional purchase experience.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/Organizers.css'>Organizers.css</a></b></td>
-						<td>- Defines the visual styling for a marketplace interface within the application, focusing on elements like containers, hero sections, options, and placeholder cards<br>- It establishes a cohesive theme with dark backgrounds, light text, and purple accents, enhancing user interaction through visual feedback on hover states and maintaining a modern, clean aesthetic throughout the user interface.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/App.css'>App.css</a></b></td>
-						<td>- Defines the visual styling for key UI components within the application, focusing on the top navigation bar and link elements<br>- It enhances user interaction by providing visual feedback through color changes and underlining on hover, ensuring a clear and aesthetically pleasing interface<br>- The styles contribute to the overall user experience by maintaining a consistent and engaging design theme across the application.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/CreateTokenFormCard.css'>CreateTokenFormCard.css</a></b></td>
-						<td>- Provides styling for a user interface component, specifically a modal overlay and card, used for creating tokens within the application<br>- It ensures the modal is visually centered and accessible, with clear, thematic input fields and action buttons that enhance user interaction and visual appeal during the token creation process.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/ViewEventsCard.css'>ViewEventsCard.css</a></b></td>
-						<td>- Defines the visual styling and interactive behaviors for the View Events Card component within the application<br>- It includes styles for the container, headers, event items, and details, ensuring a consistent and engaging user interface<br>- The CSS rules enhance readability and interactivity, featuring hover effects and animations for a dynamic user experience.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/misc.css'>misc.css</a></b></td>
-						<td>- Defines the visual styling for key UI components within the application, specifically focusing on the features and testimonials sections<br>- It enhances user interaction by applying dynamic effects such as transformations and shadows on hover, and establishes a consistent color scheme and typography for text elements, contributing to the overall aesthetic and user experience of the platform.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/TransactionModal.css'>TransactionModal.css</a></b></td>
-						<td>- Defines the styling for a transaction modal within the application, including a full-screen dark overlay and a centered content box with animations for appearance<br>- It styles headers, paragraphs, and action buttons, ensuring visual coherence and interactive feedback through color changes on hover for buttons.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/Home.css'>Home.css</a></b></td>
-						<td>- Provides styling for the home page within the application, focusing on spatial layout and background aesthetics<br>- It sets specific padding and background color parameters to ensure visual consistency and user comfort<br>- This CSS file is essential for maintaining the overall look and feel of the home page interface.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/HeroSection.css'>HeroSection.css</a></b></td>
-						<td>- Defines styling for a Hero Section featuring a combination of static and rotating text elements<br>- Utilizes flexbox to align and center text effectively, ensuring a seamless visual transition between elements<br>- The CSS rules manage animations for rotating words, maintaining consistent design aesthetics and preventing layout shifts during animations, enhancing the user interface of the web application.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/InfoSection.css'>InfoSection.css</a></b></td>
-						<td>- Defines the visual styling for the Info Section within the application, setting up a dark theme with contrasting light gray text and purple accents<br>- It includes styles for a responsive layout with centered content, interactive circular icons with hover effects, and image enhancements<br>- The CSS rules ensure readability and visual appeal of titles, text, and images in the information display area.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/GetStarted.css'>GetStarted.css</a></b></td>
-						<td>- Provides styling for the Get Started page, focusing on aesthetic elements such as background colors, text colors, and font settings to enhance user engagement<br>- It defines the visual layout for containers, hero sections, titles, subtitles, and content blocks, ensuring a cohesive and visually appealing introduction to the platform.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/FeaturesSection.css'>FeaturesSection.css</a></b></td>
-						<td>- Defines the styling for the Features Section within the application, setting visual parameters for background colors, margins, and flexbox properties for layout consistency<br>- It ensures the feature cards are attractively displayed with dynamic hover effects, enhancing user interaction by visually distinguishing each card when focused.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/FeatureCard.css'>FeatureCard.css</a></b></td>
-						<td>- Defines the styling for FeatureCard components within the application, setting visual properties such as background color, border, dimensions, and text alignment<br>- It enhances user interaction by applying dynamic effects on hover, like movement and shadow enhancements, contributing to a more engaging and responsive user interface.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/global.css'>global.css</a></b></td>
-						<td>- Global.css establishes foundational styling rules across the entire application, setting a uniform look and feel by removing default margins and paddings, ensuring full viewport height coverage, and preventing horizontal overflow<br>- It also standardizes link appearances and box-sizing properties to maintain consistency in design and layout throughout the project.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/Navbar.css'>Navbar.css</a></b></td>
-						<td>- Defines the visual and interactive elements of the navigation bar for a web application, ensuring it remains fixed at the top with a responsive design<br>- It styles components like the logo, navigation links, and connect button, enhancing user interface consistency and accessibility across various devices and screen sizes.</td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/jthet/token-tickets/blob/master/src/styles/Button.css'>Button.css</a></b></td>
-						<td>- Defines CSS styles for button components within the application, specifically focusing on aesthetic properties such as background color, text color, and border styles<br>- It includes styles for both standard and hover states of 'btn-purple' and 'btn-outline-light' classes, enhancing user interface consistency and visual appeal across the platform.</td>
-					</tr>
-					</table>
-				</blockquote>
+					- CSS files
 			</details>
 			<details>
 				<summary><b>components</b></summary>
+				Reusable .tsx/.jsx components 
 				<blockquote>
 					<table>
 					<tr>
@@ -288,6 +176,7 @@ Overall, the `package-lock.json` file is pivotal in ensuring that the project's 
 			</details>
 			<details>
 				<summary><b>pages</b></summary>
+				Pages for the website.
 				<blockquote>
 					<table>
 					<tr>
@@ -319,6 +208,7 @@ Overall, the `package-lock.json` file is pivotal in ensuring that the project's 
 			</details>
 			<details>
 				<summary><b>store</b></summary>
+				Manages global application state
 				<blockquote>
 					<table>
 					<tr>
@@ -330,12 +220,15 @@ Overall, the `package-lock.json` file is pivotal in ensuring that the project's 
 			</details>
 			<details>
 				<summary><b>services</b></summary>
+				API calls and app logic
 				<blockquote>
 					<details>
 						<summary><b>wallet</b></summary>
+						API calls when working with hashconnect
 						<blockquote>
 							<details>
 								<summary><b>wallet</b></summary>
+								API functions to hashconnect
 								<blockquote>
 									<table>
 									<tr>
@@ -351,6 +244,7 @@ Overall, the `package-lock.json` file is pivotal in ensuring that the project's 
 							</details>
 							<details>
 								<summary><b>tokens</b></summary>
+								API functions with hashconnect to use Hedera Token Service 
 								<blockquote>
 									<table>
 									<tr>
@@ -465,6 +359,7 @@ Overall, the `package-lock.json` file is pivotal in ensuring that the project's 
 					</details>
 					<details>
 						<summary><b>api</b></summary>
+						Internal api calls with the token tickets backend
 						<blockquote>
 							<table>
 							<tr>
@@ -478,41 +373,11 @@ Overall, the `package-lock.json` file is pivotal in ensuring that the project's 
 			</details>
 		</blockquote>
 	</details>
-	<details> <!-- config Submodule -->
-		<summary><b>config</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/config/.eslintrc.json'>.eslintrc.json</a></b></td>
-				<td>- Establishes coding standards and rules for JavaScript and React development within the project, ensuring code consistency and quality across the team<br>- It configures ESLint to enforce style and syntax guidelines, integrates Prettier for code formatting, and sets up environment specifics for browser, Node.js, and Jest testing framework compatibility.</td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/config/.prettierignore'>.prettierignore</a></b></td>
-				<td>- Specifies directories and files that the Prettier code formatting tool should ignore, specifically the `node_modules` and `build` directories<br>- By excluding these, the tool focuses on formatting the actual source files, enhancing readability and maintaining consistency across the codebase without altering automatically generated or dependency-related files.</td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/config/.eslintignore'>.eslintignore</a></b></td>
-				<td>- Specifies directories and files that the ESLint tool should ignore during its linting process, particularly the `node_modules` and `build` directories<br>- By excluding these areas, the project ensures that linting remains efficient and focused only on the actively developed source code, enhancing code quality and maintainability.</td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
 	<details> <!-- backend Submodule -->
 		<summary><b>backend</b></summary>
+		Token Tickets backend. Manages MongoDB database.
 		<blockquote>
 			<table>
-			<tr>
-				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/backend/package-lock.json'>package-lock.json</a></b></td>
-				<td>- The `package-lock.json` file located in the `backend` directory plays a critical role in managing the dependencies of the backend component of the project<br>- This file ensures that the exact versions of the backend dependencies are recorded and maintained consistently across all installations, providing a stable and predictable environment for the application's operation.
-
-The main purpose of this file is to lock the versions of the dependencies such as `cors`, `dotenv`, `express`, and `mongoose` among others, which are essential for the backend's functionality<br>- These dependencies enable the backend to handle cross-origin requests, manage environment variables, serve web content, and interact with MongoDB databases, respectively.
-
-In the context of the entire codebase architecture, this file supports the backend's reliability and compatibility with other components of the project by preventing discrepancies in dependency versions that could potentially lead to conflicts or unexpected behavior during runtime<br>- This is particularly crucial in a multi-developer environment and aids in the smooth operation and maintenance of the backend services.</td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/backend/package.json'>package.json</a></b></td>
-				<td>- Serves as the configuration backbone for the backend module, defining its metadata, dependencies, and primary executable script<br>- It specifies essential libraries like Express for server operations and Mongoose for database interaction, ensuring the backend's capability to handle web server tasks and database management efficiently<br>- Essential for initializing and managing the backend's package ecosystem.</td>
-			</tr>
 			<tr>
 				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/backend/server.js'>server.js</a></b></td>
 				<td>- Backend/server.js establishes the server infrastructure for the TokenTickets platform, configuring middleware, API routes, and database connections<br>- It handles CORS settings, API key validation, and route definitions for events and tickets, ensuring secure and efficient data handling<br>- Additionally, it sets up HTTPS for production with SSL certificates and provides error management across the application.</td>
@@ -587,17 +452,6 @@ In the context of the entire codebase architecture, this file supports the backe
 			</details>
 		</blockquote>
 	</details>
-	<details> <!-- public Submodule -->
-		<summary><b>public</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/jthet/token-tickets/blob/master/public/index.html'>index.html</a></b></td>
-				<td>- Serves as the entry point for the Token Tickets web application, setting up the basic HTML structure and viewport settings<br>- It includes a reference to a favicon for branding and designates a root div where the application's React components will be rendered dynamically.</td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
 </details>
 
 ---
@@ -605,7 +459,7 @@ In the context of the entire codebase architecture, this file supports the backe
 
 ###  Prerequisites
 
-Before getting started with token-tickets, ensure your runtime environment meets the following requirements:
+To run token tickets, have an environment that supports these:
 
 - **Programming Language:** JavaScript
 - **Package Manager:** Npm
@@ -613,7 +467,7 @@ Before getting started with token-tickets, ensure your runtime environment meets
 
 ###  Installation
 
-Install token-tickets using one of the following methods:
+Install token tickets:
 
 **Build from source:**
 
@@ -658,7 +512,7 @@ API_KEY=example123
 
 # # For testing routes and populating database.
 # dev user
-OPERATOR_ACCOUNT_ID=0.0.5196091
+OPERATOR_ACCOUNT_ID=
 OPERATOR_ACCOUNT_PRIVATE_KEY_DER=
 
 # TOKEN_TICKETS_USER
