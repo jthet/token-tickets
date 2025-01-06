@@ -7,6 +7,7 @@ import GetStarted from "./pages/GetStarted";
 import Organizers from "./pages/Organizers.tsx";
 import Marketplace from "./pages/Marketplace.tsx";
 import Buy from "./pages/Buy.tsx";
+import Footer from "./components/Footer.tsx";
 import "./styles/App.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/organizers" element={<Organizers />} />
         <Route path="/buy" element={<Buy />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

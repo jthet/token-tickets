@@ -8,7 +8,7 @@ const About = () => {
   const navigate = useNavigate();
 
   const goToGetStarted = () => {
-    navigate("/getStarted");
+    navigate("/marketplace");
   };
   
   return (
@@ -24,6 +24,12 @@ const About = () => {
           </p>
         </div>
       </section>
+
+      <img
+        src="/assets/tokenTicketsLogo.png"
+        alt="Logo"
+        className="logo-img-inverted-about-page align-items-center"
+      />
 
       {/* Introduction Section */}
       <section className="about-introduction">

@@ -5,6 +5,7 @@
   font-family: Arial, sans-serif;
   line-height: 1.8;
   padding-top: 80px; /* Push content down to avoid being covered by the header */
+  padding-bottom: 200px; /* Add space at the bottom */
   text-align: center; /* Center all text */
 }
 
@@ -225,4 +226,19 @@
 .logo:hover {
   transform: scale(1.2);
   box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2); /* Subtle glow on hover */
+}
+
+.logo-img-inverted-about-page {
+  width: 500px; /* Increase the width */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Center alignment helper */
+  margin: 0 auto; /* Center align the image horizontally */
+  filter: invert(1); /* Invert the colors */
+}
+
+.logo-img-about-page {
+  width: 500px; /* Increase the width */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Center alignment helper */
+  margin: 0 auto; /* Center align the image horizontally */
 }
