@@ -22,6 +22,7 @@ app.use(
       "http://www.tokentickets.tech", // Allow HTTP www version
       "https://tokentickets.tech", // Allow HTTPS version
       "https://www.tokentickets.tech", // Allow HTTPS www version
+      "http://localhost:3000", // Allow localhost for dev
     ], // Allow both HTTP and HTTPS versions of the domain
   })
 );
