@@ -13,7 +13,7 @@
 <p align="left"><!-- default option, no dependency badges. -->
 </p>
 <p align="left">
-	<!-- default option, no dependency badges. -->
+  Winner of <a href="https://hellofuturehackathon.dev">Hello Future 2.0 Hackathon</a> hosted by Hedera!
 </p>
 </div>
 <br clear="right">
